@@ -9,6 +9,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI OpenWrt.org theme
 LUCI_DEPENDS:=
 
-include ../../luci.mk
+#include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
