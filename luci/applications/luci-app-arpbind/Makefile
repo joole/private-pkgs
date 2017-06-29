@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=ARP Binding
 LUCI_DEPENDS:=+ip-full
 
-include ../../luci.mk
+include ../../../../luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
 
