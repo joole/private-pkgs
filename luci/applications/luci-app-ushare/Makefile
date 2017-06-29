@@ -9,6 +9,6 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=uShare - UPnP A/V & DLNA Media Server
 LUCI_DEPENDS:=+ushare @BROKEN
 
-include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

@@ -9,6 +9,6 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI Voice Software (Diagnostics)
 LUCI_DEPENDS:=+luci-app-diag-devinfo @BROKEN
 
-include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

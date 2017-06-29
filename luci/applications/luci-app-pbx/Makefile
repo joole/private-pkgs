@@ -14,6 +14,6 @@ LUCI_DEPENDS:= @BROKEN \
 	+asterisk18-res-clioriginate +asterisk18-func-channel +asterisk18-chan-local \
 	+asterisk18-app-record +asterisk18-app-senddtmf +asterisk18-res-crypto
 
-include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

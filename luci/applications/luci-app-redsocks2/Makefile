@@ -11,6 +11,6 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI Support for redsocks2
 LUCI_DEPENDS:=+redsocks2 +kmod-ipt-nat +kmod-ipt-nat-extra +kmod-ipt-ipset +ipset +resolveip +ipip-chnroute
 
-include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

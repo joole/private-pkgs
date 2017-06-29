@@ -12,6 +12,6 @@ LUCI_PKGARCH:=all
 
 PKG_MAINTAINER:=Dan Luedtke <mail@danrl.com>
 
-include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

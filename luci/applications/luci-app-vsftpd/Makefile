@@ -10,6 +10,6 @@ LUCI_TITLE:=vsftpd - FTP module
 LUCI_DEPENDS:=@((PACKAGE_vsftpd||PACKAGE_vsftpd-tls)&&VSFTPD_USE_UCI_SCRIPTS)
 LUCI_PKGARCH:=all
 
-include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

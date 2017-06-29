@@ -9,6 +9,6 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI Support for the Freifunk P2P-Block addon
 LUCI_DEPENDS:=+luci-app-firewall +freifunk-p2pblock @BROKEN
 
-include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
