@@ -8,7 +8,7 @@ packages for OpenWRT or LEDE
 #### 编辑`feeds.conf`文件，加入下面一行
 
 ```
-src-git antigfw https://github.com/joole/private-packages.git
+src-git joole https://github.com/joole/private-pkgs.git
 ```
 
 #### 运行下面的命令
