@@ -11,6 +11,6 @@ include $(TOPDIR)/rules.mk
 LUCI_TITLE:=LuCI Support for kmod-adkill
 LUCI_DEPENDS:=+kmod-adkill
 
-include ../../luci.mk
+include ../../../../luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature
