@@ -1,32 +1,77 @@
 #youku tudou
+#echo "R 2 static.youku.com loader.swf 192.168.1.118 /loader.swf">/proc/advkill/advconf
+#echo "R 5 js.tudouui.com /bin/lingtong/PortalPlayer_56.swf 192.168.1.118 /tudou.swf">/proc/advkill/advconf
 echo "D 10 valf.atm.youku.com /vf? valf.atm.youku.com a" > /proc/advkill/advconf 
 echo "D 11 ad.api.3g.youku.com /adv? ad.api.3g.youku.com a" > /proc/advkill/advconf
 echo "D 12 mf.atm.youku.com /mf? mf.atm.youku.com a" > /proc/advkill/advconf
+#echo "D 13 pl.youku.com ids= pl.youku.com a" > /proc/advkill/advconf
 echo "D 14 valo.atm.youku.com /vo? valo.atm.youku.com a" > /proc/advkill/advconf
 echo "D 15 f.youku.com /flv/ f.youku.com a" > /proc/advkill/advconf
 echo "D 16 ad.api.3g.tudou.com /adv? ad.api.3g.tudou.com a" > /proc/advkill/advconf
+#youku pad
+#echo "D 13 123.129.231.12 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 119.167.152.22 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 27.221.31.202 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 61.55.189.49 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 182.118.6.112 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 119.188.38.184 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 182.118.58.17 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 61.158.246.22 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 119.188.38.184 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 119.188.38.73 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 61.158.246.44 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf 
+#echo "D 14 27.221.23.131 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 27.221.23.132 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf 
+#echo "D 14 182.118.6.15 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 27.221.18.174 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf 
+#echo "D 14 61.55.189.22 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf
+#echo "D 14 119.167.152.19 .flv.ts?,.flv?,.FLV? 123.129.231.12 a,b,c" > /proc/advkill/advconf 
 
 #letv
+#echo "R 4 player.letvcdn.com /LetvPlayer.swf 192.168.1.118 /letv.swf">/proc/advkill/advconf
+#echo "D 20 pro.hoye.letv.com /main/s? pro.hoye.letv.com a" > /proc/advkill/advconf
+#echo "D 21 ark.letv.com /s? ark.letv.com !cis=" > /proc/advkill/advconf
+#echo "D 22 dc.letv.com /vq/ac? dc.letv.com a" > /proc/advkill/advconf
+#echo "D 23 g3.letv.cn /vod/v1/ g3.letv.cn a" > /proc/advkill/advconf
+#echo "D 24 g3.letv.com .flv? g3.letv.com a" > /proc/advkill/advconf
 echo "D 25 dc.letv.com / dc.letv.com a" > /proc/advkill/advconf
 echo "M 26 ark.letv.com ark= ark.letv.com 02" > /proc/advkill/advconf
 
 #ku6
+#echo "R 7 player.ku6cdn.com /default/juchang/swf/201205291326/player.swf 192.168.1.118 /ku6.swf">/proc/advkill/advconf
+#echo "D 30 pic.snyu.com .flv,.FLV,.swf pic.snyu.com a,b,c" > /proc/advkill/advconf
+#echo "D 31 static.acs86.com .flv,.FLV,.swf static.acs86.com a,b,c" > /proc/advkill/advconf
+#echo "D 32 g.aa.sdo.com /?sdk= g.aa.sdo.com a" > /proc/advkill/advconf
+#echo "D 33 g1.sdo.com /?method= g1.sdo.com a" > /proc/advkill/advconf
+#echo "D 35 abc1.sdo.com .flv abc1.sdo.com a" > /proc/advkill/advconf
+#echo "D 38 dwtracking.sdo.com /ku6.gif? dwtracking.sdo.com 0" > /proc/advkill/advconf
+#echo "D 39 st.vq.ku6.cn /start? st.vq.ku6.cn a" > /proc/advkill/advconf
 echo "R 36 player.ku6cdn.com v.swf adtchrome.qiniudn.com /ku6_20140420.swf">/proc/advkill/advconf
+#echo "D 36 s.x.cn.miaozhen.com /ax? s.x.cn.miaozhen.com a">/proc/advkill/advconf
+#echo "D 37 g1.sdo.com /? g1.sdo.com a">/proc/advkill/advconf
+#echo "D 38 ku6im.allyes.com /main/s? ku6im.allyes.com a">/proc/advkill/advconf
 
 #tencent
 echo "D 40 livew.l.qq.com /livemsg? livew.l.qq.com a" > /proc/advkill/advconf
 echo "D 41 adslvfile.qq.com .flv,.FLV adslvfile.qq.com a,b" > /proc/advkill/advconf
 echo "D 42 vv.video.qq.com /getmind? vv.video.qq.com a" > /proc/advkill/advconf
-#echo "D 43 livec.l.qq.com /livemsg? livec.l.qq.com a" > /proc/advkill/advconf
-echo "F 43 livec.l.qq.com /livemsg? livec.l.qq.com a" > /proc/advkill/advconf
+echo "D 43 livec.l.qq.com /livemsg? livec.l.qq.com a" > /proc/advkill/advconf
 echo "D 44 livep.l.qq.com /livemsg? livew.l.qq.com a" > /proc/advkill/advconf
 echo "D 45 lives.l.qq.com /livemsg? lives.l.qq.com a" > /proc/advkill/advconf
 echo "D 46 vv.video.qq.com /getvmind? vv.video.qq.com a" > /proc/advkill/advconf
 
 #xunlei
+#echo "D 50 *.float.sandai.net .flv,.FLV float.sandai.net a,b" > /proc/advkill/advconf
+#echo "D 51 logic.cpm.cm.sandai.net /adlistrequest? logic.cpm.cm.sandai.net a" > /proc/advkill/advconf
 echo "D 52 *.logic.cpm.cm.sandai.net /adlistrequest? cpm.cm.sandai.net a" > /proc/advkill/advconf
+#echo "D 53 *.logic.cpm.cm.sandai.net /adrequest? logic.cpm.cm.sandai.net a" > /proc/advkill/advconf
+#echo "D 54 float.sandai.net .flv,.FLV float.sandai.net a,b" > /proc/advkill/advconf
 
 #sohu
+#echo "D 60 mfiles.sohu.com .mp4 mfiles.sohu.com a" > /proc/advkill/advconf
+#echo "D 61 images.sohu.com .mp4 images.sohu.com a" > /proc/advkill/advconf
+#echo "D 62 f.aty.sohu.com /f? f.aty.sohu.com a" > /proc/advkill/advconf
+#echo "D 63 v.aty.sohu.com /v? v.aty.sohu.com a" > /proc/advkill/advconf
 echo "G 62 v.aty.sohu.com /v? v.aty.sohu.com a" > /proc/advkill/advconf
 echo "D 63 m.aty.sohu.com /m? m.aty.sohu.com a" > /proc/advkill/advconf
 
@@ -79,6 +124,7 @@ echo "D 121 adm.funshion.com .flv adm.funshion.com a">/proc/advkill/advconf
 echo "D 131 afp.acs86.com /a.htm? afp.acs86.com a">/proc/advkill/advconf
 
 #www.v1.cn
+#echo "D 140 luck.v1.cn /adxml.php? luck.v1.cn a">/proc/advkill/advconf
 echo "D 141 luck.v1.cn /adxml.php? luck.v1.cn !stype=text" > /proc/advkill/advconf
 
 #www.tangdou.com

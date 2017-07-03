@@ -3,10 +3,10 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		×Ö·û²Ù×÷½Ó¿Ú
+@brief		å­—ç¬¦æ“ä½œæ¥å£
 
 @note		
-Ö÷Òª½âÎö¶ÔHTTPĞ­ÒéÏà¹Ø×Ö·û´®½øĞĞ²Ù×÷
+ä¸»è¦è§£æå¯¹HTTPåè®®ç›¸å…³å­—ç¬¦ä¸²è¿›è¡Œæ“ä½œ
 */
 
 #include "strcmd.h"
@@ -19,16 +19,16 @@ extern unsigned long long int g_free_size;
 #endif
 
 /**
-¸ù¾İ×Ö¶Î±êÊ¶»ñÈ¡HTTPĞ­ÒéÖĞ×Ö¶ÎÄÚÈİ
+æ ¹æ®å­—æ®µæ ‡è¯†è·å–HTTPåè®®ä¸­å­—æ®µå†…å®¹
 
-@param httpstr HTTPĞ­Òé×Ö·û´®
-@param httpstrlen HTTPĞ­Òé×Ö·û´®³¤¶È
-@param fieldflag Òª»ñÈ¡×Ö¶ÎµÄ±êÊ¶
-@param fieldflaglen Òª»ñÈ¡×Ö¶ÎµÄ±êÊ¶³¤¶È
-@param field Òª±£´æ×Ö¶ÎÄÚÈİµÄµØÖ·
-@param maxfieldlen Òª±£´æ×Ö¶ÎÄÚÈİµÄ×î´ó³¤¶È
-@param realfieldlen »ñÈ¡µ½µÄ×Ö¶ÎÄÚÈİµÄÊµ¼Ê³¤¶È
-@return »ñÈ¡µ½µÄ×Ö¶ÎÄÚÈİµÄµØÖ·
+@param httpstr HTTPåè®®å­—ç¬¦ä¸²
+@param httpstrlen HTTPåè®®å­—ç¬¦ä¸²é•¿åº¦
+@param fieldflag è¦è·å–å­—æ®µçš„æ ‡è¯†
+@param fieldflaglen è¦è·å–å­—æ®µçš„æ ‡è¯†é•¿åº¦
+@param field è¦ä¿å­˜å­—æ®µå†…å®¹çš„åœ°å€
+@param maxfieldlen è¦ä¿å­˜å­—æ®µå†…å®¹çš„æœ€å¤§é•¿åº¦
+@param realfieldlen è·å–åˆ°çš„å­—æ®µå†…å®¹çš„å®é™…é•¿åº¦
+@return è·å–åˆ°çš„å­—æ®µå†…å®¹çš„åœ°å€
 */
 char *get_http_field(char *httpstr, int httpstrlen, char *fieldflag, int fieldflaglen, char *field, int maxfieldlen, int *realfieldlen)
 {
@@ -65,14 +65,14 @@ char *get_http_field(char *httpstr, int httpstrlen, char *fieldflag, int fieldfl
 }
 
 /**
-»ñÈ¡HTTPĞ­ÒéÖĞURLÄÚÈİ
+è·å–HTTPåè®®ä¸­URLå†…å®¹
 
-@param httpstr HTTPĞ­Òé×Ö·û´®
-@param httpstrlen HTTPĞ­Òé×Ö·û´®³¤¶È
-@param field Òª±£´æ×Ö¶ÎÄÚÈİµÄµØÖ·
-@param maxfieldlen Òª±£´æ×Ö¶ÎÄÚÈİµÄ×î´ó³¤¶È
-@param geturllen »ñÈ¡µ½µÄURLµÄÊµ¼Ê³¤¶È
-@return »ñÈ¡µ½µÄURLÄÚÈİµÄµØÖ·
+@param httpstr HTTPåè®®å­—ç¬¦ä¸²
+@param httpstrlen HTTPåè®®å­—ç¬¦ä¸²é•¿åº¦
+@param field è¦ä¿å­˜å­—æ®µå†…å®¹çš„åœ°å€
+@param maxfieldlen è¦ä¿å­˜å­—æ®µå†…å®¹çš„æœ€å¤§é•¿åº¦
+@param geturllen è·å–åˆ°çš„URLçš„å®é™…é•¿åº¦
+@return è·å–åˆ°çš„URLå†…å®¹çš„åœ°å€
 */
 char *get_http_get_url(char *httpstr, int httpstrlen, char *field, int maxfieldlen, int *geturllen)
 {
@@ -99,12 +99,12 @@ char *get_http_get_url(char *httpstr, int httpstrlen, char *field, int maxfieldl
 }
 
 /**
-¸ù¾İHostºÍURLÉú³ÉlocationÄÚÈİ
+æ ¹æ®Hostå’ŒURLç”Ÿæˆlocationå†…å®¹
 
-@param location Òª±£´æµÄlocationÄÚÈİµÄµØÖ·
-@param maxlen Òª±£´ælocationÄÚÈİµÄ×î´ó³¤¶È
-@param host locationÄÚÈİÓÃµ½µÄHost
-@param url locationÄÚÈİÓÃµ½µÄURL
+@param location è¦ä¿å­˜çš„locationå†…å®¹çš„åœ°å€
+@param maxlen è¦ä¿å­˜locationå†…å®¹çš„æœ€å¤§é•¿åº¦
+@param host locationå†…å®¹ç”¨åˆ°çš„Host
+@param url locationå†…å®¹ç”¨åˆ°çš„URL
 */
 void http_location_generate(char *location, int maxlen, char *host, char *url)
 {
@@ -114,10 +114,10 @@ void http_location_generate(char *location, int maxlen, char *host, char *url)
 }
 
 /**
-¼ì²âHostÄÚÈİÊÇ·ñÈ«ÎªIPµØÖ·¶ø·ÇÓòÃû
+æ£€æµ‹Hostå†…å®¹æ˜¯å¦å…¨ä¸ºIPåœ°å€è€ŒéåŸŸå
 
-@param host Òª¼ì²âµÄHostÄÚÈİ
-@return ÊÇIPµØÖ··µ»Ø ADV_KILL_OK£¬·ñÔò·µ»Ø ADV_KILL_FAIL¡£
+@param host è¦æ£€æµ‹çš„Hostå†…å®¹
+@return æ˜¯IPåœ°å€è¿”å› ADV_KILL_OKï¼Œå¦åˆ™è¿”å› ADV_KILL_FAILã€‚
 */
 int is_digit_host(char *host)
 {
@@ -138,11 +138,11 @@ int is_digit_host(char *host)
 }
 
 /**
-¼ì²âÓòÃûÖĞÊÇ·ñÖÁÉÙ°üº¬Ö¸¶¨¸öÊıµÄÊı×Ö
+æ£€æµ‹åŸŸåä¸­æ˜¯å¦è‡³å°‘åŒ…å«æŒ‡å®šä¸ªæ•°çš„æ•°å­—
 
-@param domain Òª¼ì²âµÄÓòÃûÄÚÈİ
-@param digitnum Òª°üº¬µÄÊı×Ö×îÉÙ¸öÊı
-@return ÈôÊÇIPµØÖ··µ»Ø ADV_KILL_OK£¬·ñÔò·µ»Ø ADV_KILL_FAIL¡£
+@param domain è¦æ£€æµ‹çš„åŸŸåå†…å®¹
+@param digitnum è¦åŒ…å«çš„æ•°å­—æœ€å°‘ä¸ªæ•°
+@return è‹¥æ˜¯IPåœ°å€è¿”å› ADV_KILL_OKï¼Œå¦åˆ™è¿”å› ADV_KILL_FAILã€‚
 */
 int domain_contain_digits(char *domain, int digitnum)
 {
@@ -174,11 +174,11 @@ int domain_contain_digits(char *domain, int digitnum)
 }
 
 /**
-¼ì²âÓòÃûÊÇ·ñ·ûºÏ×éÆ¥ÅäÄ£Ê½
+æ£€æµ‹åŸŸåæ˜¯å¦ç¬¦åˆç»„åŒ¹é…æ¨¡å¼
 
-@param domain Òª¼ì²âµÄÓòÃûÄÚÈİ
-@param fieldindex ÓòÃûµÚ¼¸¸ö×ÓÓò¿ªÊ¼Æ¥Åä
-@return ³É¹¦·µ»Ø Æ¥ÅäÄ£Ê½µØÖ·£¬Ê§°Ü·µ»Ø NULL¡£
+@param domain è¦æ£€æµ‹çš„åŸŸåå†…å®¹
+@param fieldindex åŸŸåç¬¬å‡ ä¸ªå­åŸŸå¼€å§‹åŒ¹é…
+@return æˆåŠŸè¿”å› åŒ¹é…æ¨¡å¼åœ°å€ï¼Œå¤±è´¥è¿”å› NULLã€‚
 */
 char * domain_regroup_match_mode(char *domain, int fieldindex)
 {
@@ -207,11 +207,11 @@ char * domain_regroup_match_mode(char *domain, int fieldindex)
 }
 
 /**
-¼ì²âÖ¸¶¨ÅäÖÃ½ÚµãÖĞÊÇ·ñ°üº¬URLÀıÍâÄ£Ê½
+æ£€æµ‹æŒ‡å®šé…ç½®èŠ‚ç‚¹ä¸­æ˜¯å¦åŒ…å«URLä¾‹å¤–æ¨¡å¼
 
-@param surl Ô­Ê¼URL
-@param node Òª¼ì²âµÄÅäÖÃ½ÚµãµØÖ·
-@return ÈôÊÇ·µ»Ø ADV_KILL_OK£¬·ñÔò·µ»Ø ADV_KILL_FAIL¡£
+@param surl åŸå§‹URL
+@param node è¦æ£€æµ‹çš„é…ç½®èŠ‚ç‚¹åœ°å€
+@return è‹¥æ˜¯è¿”å› ADV_KILL_OKï¼Œå¦åˆ™è¿”å› ADV_KILL_FAILã€‚
 */
 int is_contain_except_url(char *surl, struct advconf_hashnode *node)
 {

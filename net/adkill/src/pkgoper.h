@@ -3,10 +3,10 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		È¥¹ã¸æÓ¦ÓÃÖĞÊı¾İ°ü²Ù×÷½Ó¿Ú
+@brief		å»å¹¿å‘Šåº”ç”¨ä¸­æ•°æ®åŒ…æ“ä½œæ¥å£
 
 @note		
-Êı¾İ°ü²Ù×÷½Ó¿Ú£¬°üÀ¨×é×°Êı¾İ°ü£¬·¢ËÍÊı¾İ°üµÈ¡£
+æ•°æ®åŒ…æ“ä½œæ¥å£ï¼ŒåŒ…æ‹¬ç»„è£…æ•°æ®åŒ…ï¼Œå‘é€æ•°æ®åŒ…ç­‰ã€‚
 */
 
 #ifndef _PKG_OPER_H_
@@ -20,7 +20,7 @@
 #define HTTP_RESPONSE_END_LEN								2
 //#define HTTP_RESPONSE_CONNECTION							"Connection: closed"
 
-/* HTTP 404 ´úÂë */
+/* HTTP 404 ä»£ç  */
 #define HTTP_NOT_FOUND_STR									"HTTP/1.1 404 Not Found\r\n" \
 															"Server: QWS\r\n" \
 															"Content-Type: text/html\r\n" \
@@ -29,7 +29,7 @@
 															"<html><head><title>404 Not Found</title></head><body><center><h1>404 Not Found</h1></center><hr><center>QWS</center></body></html>"
 #define HTTP_NOT_FOUND_STR_LEN								239
 
-/* HTTP 502 ´úÂë */
+/* HTTP 502 ä»£ç  */
 #define HTTP_BAD_GATEWAY									"HTTP/1.1 502 Bad Gateway\r\n" \
 															"Server: QWS\r\n" \
 															"Content-Type: text/html\r\n" \
@@ -38,97 +38,97 @@
 															"<html><head><title>502 Bad Gateway</title></head><body><center><h1>502 Bad Gateway</h1></center><hr><center>QWS</center></body></html>"
 #define HTTP_BAD_GATEWAY_STR_LEN							245
 
-/* HTTP 302 ´úÂë*/
+/* HTTP 302 ä»£ç */
 #define HTTP_FIND_LOCAL_STR									"HTTP/1.1 302 Found\r\nLocation: http://127.0.0.1/\r\n\r\n"
 #define HTTP_FIND_LOCAL_STR_LEN								51
 
 /* lan interface */
-#define ETH_CLIENT_LAN0									"eth0.1"
-#define ETH_CLIENT_LAN1									"eth0.1"
+#define ETH_CLIENT_LAN0									"br-lan"
+#define ETH_CLIENT_LAN1									"br-lan"
 
 /* wlan interface */
-#define ETH_CLIENT_WLAN0								"ra0"
-#define ETH_CLIENT_WLAN1								"ra1"
+#define ETH_CLIENT_WLAN0								"vlan0"
+#define ETH_CLIENT_WLAN1								"vlan1"
 
 /**
-Íø¿¨ĞÅÏ¢½á¹¹Ìå
+ç½‘å¡ä¿¡æ¯ç»“æ„ä½“
 
-Ö÷ÒªÔÚÍùÍø¿¨·¢ËÍÊı¾İ°üÊ±Ê¹ÓÃ£¬°üÀ¨ÓĞÏßºÍÎŞÏßÍø¿¨¡£
+ä¸»è¦åœ¨å¾€ç½‘å¡å‘é€æ•°æ®åŒ…æ—¶ä½¿ç”¨ï¼ŒåŒ…æ‹¬æœ‰çº¿å’Œæ— çº¿ç½‘å¡ã€‚
 */
 struct client_nicname
 {
-	int index;	///< Íø¿¨Ë÷Òı
-	char *name;	///< Íø¿¨Ãû³Æ
+	int index;	///< ç½‘å¡ç´¢å¼•
+	char *name;	///< ç½‘å¡åç§°
 };
 
 /**
-¸ù¾İtcpÊı¾İÉú³ÉÊı¾İ°ü
+æ ¹æ®tcpæ•°æ®ç”Ÿæˆæ•°æ®åŒ…
 
-¸ù¾İtcpÊı¾İ£¬Éú³ÉÊı¾İ°ü£¬²¢Ìî³ä mac/ip/tcp Í·²¿ĞÅÏ¢
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@param names Íø¿¨Ãû³Æ½á¹¹Ê×µØÖ·
-@param num Íø¿¨¸öÊı
-@param tcpdata tcpÊı¾İµØÖ·
-@param tcpdatalen tcpÊı¾İ³¤¶È
-@return ³É¹¦·µ»ØÊı¾İ°üµØÖ·£¬Ê§°Ü·µ»ØNULL¡£
+æ ¹æ®tcpæ•°æ®ï¼Œç”Ÿæˆæ•°æ®åŒ…ï¼Œå¹¶å¡«å…… mac/ip/tcp å¤´éƒ¨ä¿¡æ¯
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@param names ç½‘å¡åç§°ç»“æ„é¦–åœ°å€
+@param num ç½‘å¡ä¸ªæ•°
+@param tcpdata tcpæ•°æ®åœ°å€
+@param tcpdatalen tcpæ•°æ®é•¿åº¦
+@return æˆåŠŸè¿”å›æ•°æ®åŒ…åœ°å€ï¼Œå¤±è´¥è¿”å›NULLã€‚
 */
 struct sk_buff *pkg_skbuff_generate(struct sk_buff *skb, struct client_nicname *names, int num, char *tcpdata, int tcpdatalen);
 
 /**
-·¢ËÍtcpÊı¾İ°ü
+å‘é€tcpæ•°æ®åŒ…
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@param tcpdata tcpÊı¾İµØÖ·
-@param tcpdatalen tcpÊı¾İ³¤¶È
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@param tcpdata tcpæ•°æ®åœ°å€
+@param tcpdatalen tcpæ•°æ®é•¿åº¦
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int pkg_skbuff_dev_xmit(struct sk_buff *skb, char *tcpdata, int tcpdatalen);
 
 /**
-¸ù¾İHostÉú³Élocation×Ö·û´®
+æ ¹æ®Hostç”Ÿæˆlocationå­—ç¬¦ä¸²
 
-@param httplen Éú³ÉµÄlocation³¤¶È
-@param host Host×Ö·û´®ÄÚÈİ
-@return ³É¹¦·µ»ØlocationµØÖ·£¬Ê§°Ü·µ»ØNULL¡£
+@param httplen ç”Ÿæˆçš„locationé•¿åº¦
+@param host Hostå­—ç¬¦ä¸²å†…å®¹
+@return æˆåŠŸè¿”å›locationåœ°å€ï¼Œå¤±è´¥è¿”å›NULLã€‚
 */
 char *http_location_str_generate(int *httplen, char *host);
 
 /**
-¸ù¾İlocation·¢ËÍ302ÏûÏ¢
+æ ¹æ®locationå‘é€302æ¶ˆæ¯
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@param location ĞèÒª·¢ËÍµÄlocationÄÚÈİ
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@param location éœ€è¦å‘é€çš„locationå†…å®¹
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int send_client_location(struct sk_buff *skb, char *location);
 
 /**
-·¢ËÍ404ÏûÏ¢
+å‘é€404æ¶ˆæ¯
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int send_client_notfound(struct sk_buff *skb);
 
 /**
-·¢ËÍ502ÏûÏ¢
+å‘é€502æ¶ˆæ¯
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int send_client_bad_gateway(struct sk_buff *skb);
 
 /**
-ÖØĞÂ¶ÔIPÍ·ºÍTCPÍ·½øĞĞĞ£Ñé
+é‡æ–°å¯¹IPå¤´å’ŒTCPå¤´è¿›è¡Œæ ¡éªŒ
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
 */
 void refresh_skb_checksum(struct sk_buff *skb);
 
 /*
- ·¢ËÍÎ±ÔìµÄHTTP200ÏìÓ¦
- @param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ· CType Content-Type Cont ÍøÒ³ÄÚÈİ
- @return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+ å‘é€ä¼ªé€ çš„HTTP200å“åº”
+ @param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€ CType Content-Type Cont ç½‘é¡µå†…å®¹
+ @return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 HTTP/1.1 200 OK\r\n
 Server: QWS\r\n
 Content-Type: text/xml\r\n

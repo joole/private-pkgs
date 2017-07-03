@@ -3,10 +3,10 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		ȥ������ý����ӿ�
+@brief		去广告配置解析接口
 
 @note
-ȥ�������Ӧ���н����û����õ���ؽӿ�
+去广告配置应用中解析用户配置的相关接口
 */
 #ifndef _ADV_CONF_PARSE_H_
 #define _ADV_CONF_PARSE_H_
@@ -21,19 +21,19 @@
 
 #define ADV_CONF_DATA_SEPC_CHAR					' '
 #define ADV_TAG_SEPARATIR_CHAR					','
-#define ADV_CONF_REDIRECT_PLAYER				'R'		///< �ض���ģʽ 302
-#define ADV_CONF_DROP_REQUEST					'D'		///< dropģʽ 404
-#define ADV_CONF_MODIFY_URL						'M'		///< �޸�Դ���ݰ�
-#define ADV_CONF_BAD_GW							'G'		///< ���ش��� 502
-#define ADV_CONF_FAKE_PACK						'F'		///< ����α�����ݰ�
+#define ADV_CONF_REDIRECT_PLAYER				'R'		///< 重定向模式 302
+#define ADV_CONF_DROP_REQUEST					'D'		///< drop模式 404
+#define ADV_CONF_MODIFY_URL						'M'		///< 修改源数据包
+#define ADV_CONF_BAD_GW							'G'		///< 网关错误 502
+#define ADV_CONF_FAKE_PACK						'F'		///< 发送伪造数据包
 
 /**
-����һ�����ã�������ɺ����ô���ڽṹ�� advconf_hashtable ��
+解析一行配置，解析完成后配置存放在结构体 advconf_hashtable 里
 
-@param linedata ����������
-@param table ���ù�ϣ���׵�ַ
-@param tablenum ���ù�ϣ����С
-@return �ɹ�����ADV_KILL_OK��ʧ�ܷ���ADV_KILL_FAIL
+@param linedata 输入配置行
+@param table 配置哈希表首地址
+@param tablenum 配置哈希表大小
+@return 成功返回ADV_KILL_OK，失败返回ADV_KILL_FAIL
 */
 int parse_advconf_line_data(char *linedata, struct advconf_hashtable *table, int tablenum);
 

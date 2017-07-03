@@ -3,10 +3,10 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		È¥¹ã¸æÓ¦ÓÃÖĞÊı¾İ°ü²Ù×÷½Ó¿Ú
+@brief		å»å¹¿å‘Šåº”ç”¨ä¸­æ•°æ®åŒ…æ“ä½œæ¥å£
 
 @note		
-Êı¾İ°ü²Ù×÷½Ó¿Ú£¬°üÀ¨×é×°Êı¾İ°ü£¬·¢ËÍÊı¾İ°üµÈ¡£
+æ•°æ®åŒ…æ“ä½œæ¥å£ï¼ŒåŒ…æ‹¬ç»„è£…æ•°æ®åŒ…ï¼Œå‘é€æ•°æ®åŒ…ç­‰ã€‚
 */
 
 #include <linux/if_packet.h>
@@ -43,9 +43,9 @@ struct client_nicname wlan_name[] =
 };
 
 /**
-ÖØĞÂ¼ÆËãIPĞ£ÑéºÍ
+é‡æ–°è®¡ç®—IPæ ¡éªŒå’Œ
 
-@param skb ÒªĞ£ÑéµÄskbµØÖ·
+@param skb è¦æ ¡éªŒçš„skbåœ°å€
 */
 static void refresh_ip_checksum(struct sk_buff *skb)
 {
@@ -53,9 +53,9 @@ static void refresh_ip_checksum(struct sk_buff *skb)
 }
 
 /**
-ÖØĞÂ¼ÆËãTCPĞ£ÑéºÍ
+é‡æ–°è®¡ç®—TCPæ ¡éªŒå’Œ
 
-@param skb ÒªĞ£ÑéµÄskbµØÖ·
+@param skb è¦æ ¡éªŒçš„skbåœ°å€
 */
 static void refresh_tcp_checksum(struct sk_buff *skb)
 {
@@ -71,9 +71,9 @@ static void refresh_tcp_checksum(struct sk_buff *skb)
 }
 
 /**
-ÖØĞÂ¶ÔIPÍ·ºÍTCPÍ·½øĞĞĞ£Ñé
+é‡æ–°å¯¹IPå¤´å’ŒTCPå¤´è¿›è¡Œæ ¡éªŒ
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
 */
 void refresh_skb_checksum(struct sk_buff *skb)
 {
@@ -82,15 +82,15 @@ void refresh_skb_checksum(struct sk_buff *skb)
 }
 
 /**
-¸ù¾İtcpÊı¾İÉú³ÉÊı¾İ°ü
+æ ¹æ®tcpæ•°æ®ç”Ÿæˆæ•°æ®åŒ…
 
-¸ù¾İtcpÊı¾İ£¬Éú³ÉÊı¾İ°ü£¬²¢Ìî³ä mac/ip/tcp Í·²¿ĞÅÏ¢
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@param names Íø¿¨Ãû³Æ½á¹¹Ê×µØÖ·
-@param num Íø¿¨¸öÊı
-@param tcpdata tcpÊı¾İµØÖ·
-@param tcpdatalen tcpÊı¾İ³¤¶È
-@return ³É¹¦·µ»ØÊı¾İ°üµØÖ·£¬Ê§°Ü·µ»ØNULL¡£
+æ ¹æ®tcpæ•°æ®ï¼Œç”Ÿæˆæ•°æ®åŒ…ï¼Œå¹¶å¡«å…… mac/ip/tcp å¤´éƒ¨ä¿¡æ¯
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@param names ç½‘å¡åç§°ç»“æ„é¦–åœ°å€
+@param num ç½‘å¡ä¸ªæ•°
+@param tcpdata tcpæ•°æ®åœ°å€
+@param tcpdatalen tcpæ•°æ®é•¿åº¦
+@return æˆåŠŸè¿”å›æ•°æ®åŒ…åœ°å€ï¼Œå¤±è´¥è¿”å›NULLã€‚
 */
 struct sk_buff *pkg_skbuff_generate(struct sk_buff *skb, struct client_nicname *names, int num, char *tcpdata, int tcpdatalen)
 {
@@ -122,10 +122,10 @@ struct sk_buff *pkg_skbuff_generate(struct sk_buff *skb, struct client_nicname *
 	{
 		goto out;    
 	}
-		
+
 	for (i=0; names[i].index != -1; i++)
 	{
-#if (LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 24))//²»È·¶¨°æ±¾ºÅÊÇ·ñÓ¦¸Ã¸üÔç
+#if (LINUX_VERSION_CODE < KERNEL_VERSION (2, 6, 24))//ä¸ç¡®å®šç‰ˆæœ¬å·æ˜¯å¦åº”è¯¥æ›´æ—©
 		dev = dev_get_by_name(names[i].name);
 #else
 		dev = dev_get_by_name(&init_net, names[i].name);
@@ -175,7 +175,7 @@ struct sk_buff *pkg_skbuff_generate(struct sk_buff *skb, struct client_nicname *
 #endif
 	skb_put(new_skb, iph->ihl*4 + tcph->doff*4);
 	new_skb->mac_len = 14;
-	new_skb->dev = dev;  
+	new_skb->dev = dev;
 	new_skb->pkt_type = PACKET_OTHERHOST;
 	new_skb->protocol = __constant_htons(ETH_P_IP);
 	new_skb->ip_summed = CHECKSUM_NONE;
@@ -196,7 +196,7 @@ struct sk_buff *pkg_skbuff_generate(struct sk_buff *skb, struct client_nicname *
 	new_iph->saddr = iph->daddr;
 	new_iph->daddr = iph->saddr;
 	new_iph->tot_len = htons(tcpdatalen + iph->ihl*4 + tcph->doff*4);
-	new_iph->check = 0;   
+	new_iph->check = 0;
 	/*
 	 *TCP set
 	 */
@@ -223,9 +223,7 @@ struct sk_buff *pkg_skbuff_generate(struct sk_buff *skb, struct client_nicname *
 				memcpy(newpdata, tcpdata, tcpdatalen);
 		}
 	}
-
 	refresh_skb_checksum(new_skb);
-	dev_put(dev);//ÒıÓÃ¼ÆÊıÆ÷¼õ1£¬·ñÔò¼ÆÊıÆ÷²»ÄÜ¹é0£¬½øÈëËÀÑ­»·     add by tianfy 2015-8-11
 	return new_skb;
 out:
 	if (NULL != skb)
@@ -237,57 +235,38 @@ out:
 }
 
 /**
-·¢ËÍtcpÊı¾İ°ü
+å‘é€tcpæ•°æ®åŒ…
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@param tcpdata tcpÊı¾İµØÖ·
-@param tcpdatalen tcpÊı¾İ³¤¶È
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@param tcpdata tcpæ•°æ®åœ°å€
+@param tcpdatalen tcpæ•°æ®é•¿åº¦
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int pkg_skbuff_dev_xmit(struct sk_buff *skb, char *tcpdata, int tcpdatalen)
 {
 	struct sk_buff *new_skb_lan = NULL;
-	struct sk_buff *new_skb_wlan = NULL;
 	int ret = 0;
 
-	if(skb->real_dev_mark == WIRE_LAN_MARK) {
-		new_skb_lan = pkg_skbuff_generate(skb, lan_name, sizeof(lan_name)/sizeof(struct client_nicname), tcpdata, tcpdatalen);
-		new_skb_lan->data -= 14;
-		new_skb_lan->len  += 14;
-		ret = dev_queue_xmit(new_skb_lan);
-		if(ret != 0)
-		{
+	new_skb_lan = pkg_skbuff_generate(skb, lan_name, sizeof(lan_name)/sizeof(struct client_nicname), tcpdata, tcpdatalen);
+	new_skb_lan->data -= 14;
+	new_skb_lan->len  += 14;
+	ret = dev_queue_xmit(new_skb_lan);
+	if(ret != 0)
+	{
 #ifdef ADVKILL_PRINT_DEBUG_INFO
-			printk(KERN_ALERT "dev queue xmit failed %d\n",ret);
+		printk(KERN_ALERT "dev queue xmit failed %d\n",ret);
 #endif
-			return ADV_KILL_FAIL;
-		}
-	} else if(skb->real_dev_mark = WIRELESS_MARK) {
-		/* Wireless */
-		new_skb_wlan = pkg_skbuff_generate(skb, wlan_name, sizeof(wlan_name)/sizeof(struct client_nicname), tcpdata, tcpdatalen);
-		new_skb_wlan->data -= 14;
-		new_skb_wlan->len  += 14;
-		ret = dev_queue_xmit(new_skb_wlan);
-		if(ret != 0)
-		{
-#ifdef ADVKILL_PRINT_DEBUG_INFO
-			printk(KERN_ALERT "dev queue xmit failed %d\n",ret);
-#endif
-			return ADV_KILL_FAIL;
-		}
-	} else {
-		printk("%s, %d, mark = %d\n",__FILE__,__LINE__, skb->real_dev_mark);
+		return ADV_KILL_FAIL;
 	}
-
 	return ADV_KILL_OK;
 }
 
 /**
-¸ù¾İHostÉú³Élocation×Ö·û´®
+æ ¹æ®Hostç”Ÿæˆlocationå­—ç¬¦ä¸²
 
-@param httplen Éú³ÉµÄlocation³¤¶È
-@param host Host×Ö·û´®ÄÚÈİ
-@return ³É¹¦·µ»ØlocationµØÖ·£¬Ê§°Ü·µ»ØNULL¡£
+@param httplen ç”Ÿæˆçš„locationé•¿åº¦
+@param host Hostå­—ç¬¦ä¸²å†…å®¹
+@return æˆåŠŸè¿”å›locationåœ°å€ï¼Œå¤±è´¥è¿”å›NULLã€‚
 */
 char *http_location_str_generate(int *httplen, char *host)
 {
@@ -330,11 +309,11 @@ err:
 }
 
 /**
-¸ù¾İlocation·¢ËÍ302ÏûÏ¢
+æ ¹æ®locationå‘é€302æ¶ˆæ¯
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@param location ĞèÒª·¢ËÍµÄlocationÄÚÈİ
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@param location éœ€è¦å‘é€çš„locationå†…å®¹
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int send_client_location(struct sk_buff *skb, char *location)
 {
@@ -355,10 +334,10 @@ int send_client_location(struct sk_buff *skb, char *location)
 }
 
 /**
-·¢ËÍ404ÏûÏ¢
+å‘é€404æ¶ˆæ¯
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int send_client_notfound(struct sk_buff *skb)
 {
@@ -369,10 +348,10 @@ int send_client_notfound(struct sk_buff *skb)
 }
 
 /**
-·¢ËÍ502ÏûÏ¢
+å‘é€502æ¶ˆæ¯
 
-@param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ·
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int send_client_bad_gateway(struct sk_buff *skb)
 {
@@ -383,9 +362,9 @@ int send_client_bad_gateway(struct sk_buff *skb)
 }
 
 /*
- ·¢ËÍÎ±ÔìµÄHTTP200ÏìÓ¦
- @param skb Ô­Ê¼µÄsk_buff½á¹¹µØÖ· CType Content-Type Cont ÍøÒ³ÄÚÈİ
- @return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+ å‘é€ä¼ªé€ çš„HTTP200å“åº”
+ @param skb åŸå§‹çš„sk_buffç»“æ„åœ°å€ CType Content-Type Cont ç½‘é¡µå†…å®¹
+ @return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 HTTP/1.1 200 OK\r\n
 Server: QWS\r\n
 Content-Type: text/xml\r\n

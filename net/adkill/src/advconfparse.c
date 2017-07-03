@@ -3,10 +3,10 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		È¥¹ã¸æÅäÖÃ½âÎö½Ó¿Ú
+@brief		å»å¹¿å‘Šé…ç½®è§£ææ¥å£
 
 @note
-È¥¹ã¸æÅäÖÃÓ¦ÓÃÖĞ½âÎöÓÃ»§ÅäÖÃµÄÏà¹Ø½Ó¿Ú
+å»å¹¿å‘Šé…ç½®åº”ç”¨ä¸­è§£æç”¨æˆ·é…ç½®çš„ç›¸å…³æ¥å£
 */
 
 #include <linux/mm.h>
@@ -24,25 +24,25 @@ extern unsigned long long int g_free_size;
 #endif
 
 /**
-ÅäÖÃĞĞÄÚÈİ½á¹¹Ìå£¬ÁÙÊ±±£´æÅäÖÃĞĞÖĞµÄÃ¿Ò»¸ö×Ö¶Î
+é…ç½®è¡Œå†…å®¹ç»“æ„ä½“ï¼Œä¸´æ—¶ä¿å­˜é…ç½®è¡Œä¸­çš„æ¯ä¸€ä¸ªå­—æ®µ
 
 */
 struct adv_conf_data
 {
-	char field1;	///< ²Ù×÷ÀàĞÍ
-	char field2[ADV_CONF_FIELD_2_LEN];	///< µÚ¶ş¸ö×Ö¶Î	
-	char field3[ADV_CONF_FIELD_3_LEN];	///< µÚÈı¸ö×Ö¶Î
-	char field4[ADV_CONF_FIELD_4_LEN];	///< µÚËÄ¸ö×Ö¶Î
-	char field5[ADV_CONF_FIELD_5_LEN];	///< µÚÎå¸ö×Ö¶Î
-	char field6[ADV_CONF_FIELD_6_LEN];	///< µÚÁù¸ö×Ö¶Î
+	char field1;	///< æ“ä½œç±»å‹
+	char field2[ADV_CONF_FIELD_2_LEN];	///< ç¬¬äºŒä¸ªå­—æ®µ	
+	char field3[ADV_CONF_FIELD_3_LEN];	///< ç¬¬ä¸‰ä¸ªå­—æ®µ
+	char field4[ADV_CONF_FIELD_4_LEN];	///< ç¬¬å››ä¸ªå­—æ®µ
+	char field5[ADV_CONF_FIELD_5_LEN];	///< ç¬¬äº”ä¸ªå­—æ®µ
+	char field6[ADV_CONF_FIELD_6_LEN];	///< ç¬¬å…­ä¸ªå­—æ®µ
 };
 
 /**
-½«ÊäÈëÅäÖÃĞĞ×ª»»µ½½á¹¹Ìå adv_conf_data ÖĞ
+å°†è¾“å…¥é…ç½®è¡Œè½¬æ¢åˆ°ç»“æ„ä½“ adv_conf_data ä¸­
 
-@param linedata ÊäÈëÅäÖÃĞĞ
-@param data ÅäÖÃ±£´æÔÚ±äÁ¿dataÀï
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL
+@param linedata è¾“å…¥é…ç½®è¡Œ
+@param data é…ç½®ä¿å­˜åœ¨å˜é‡dataé‡Œ
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAIL
 */
 static int get_advconf_line_data(char *linedata, struct adv_conf_data *data)
 {
@@ -95,10 +95,10 @@ static int get_advconf_line_data(char *linedata, struct adv_conf_data *data)
 }
 
 /**
-½âÎöÅäÖÃ²Ù×÷±êÊ¶
+è§£æé…ç½®æ“ä½œæ ‡è¯†
 
-@param oper ²Ù×÷×Ö¶Î(Ò»¸ö×Ö·û)
-@return ·µ»ØÏàÓ¦µÄ²Ù×÷ÀàĞÍ(Ã¶¾ÙÖµ)
+@param oper æ“ä½œå­—æ®µ(ä¸€ä¸ªå­—ç¬¦)
+@return è¿”å›ç›¸åº”çš„æ“ä½œç±»å‹(æšä¸¾å€¼)
 */
 static int get_oper_flag(char oper)
 {
@@ -149,11 +149,11 @@ static int get_tag_num_from_tagdata(char *tagdata, int len)
 }
 
 /**
-½âÎöÅäÖÃĞĞÖĞURLÅäÖÃ¹æÔò
+è§£æé…ç½®è¡Œä¸­URLé…ç½®è§„åˆ™
 
-@param data Òª½âÎöµÄÅäÖÃ½á¹¹Ìå
-@param node Òª±£´æµ½µÄÅäÖÃ¹şÏ£½Úµã
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL
+@param data è¦è§£æçš„é…ç½®ç»“æ„ä½“
+@param node è¦ä¿å­˜åˆ°çš„é…ç½®å“ˆå¸ŒèŠ‚ç‚¹
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAIL
 */
 static int parse_advconf_url(struct adv_conf_data *data, struct advconf_hashnode *node)
 {
@@ -212,11 +212,11 @@ static int parse_advconf_url(struct adv_conf_data *data, struct advconf_hashnode
 }
 
 /**
-½âÎöµ¥ÌõÅäÖÃ£¬²¢±£´æµ½¹şÏ£½ÚµãÄÚ
+è§£æå•æ¡é…ç½®ï¼Œå¹¶ä¿å­˜åˆ°å“ˆå¸ŒèŠ‚ç‚¹å†…
 
-@param data ÅäÖÃÁÙÊ±½á¹¹Ìå
-@param node ½âÎöºó±£´æµÄ½á¹¹ÌåµØÖ·
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param data é…ç½®ä¸´æ—¶ç»“æ„ä½“
+@param node è§£æåä¿å­˜çš„ç»“æ„ä½“åœ°å€
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 static int parse_advconf_node_from_adv_conf_data(struct adv_conf_data *data, struct advconf_hashnode **node)
 {
@@ -294,12 +294,12 @@ static void print_adv_conf_data(struct adv_conf_data *data)
 #endif
 
 /**
-½âÎöÒ»ĞĞÅäÖÃ£¬½âÎöÍê³ÉºóÅäÖÃ´æ·ÅÔÚ½á¹¹Ìå advconf_hashtable Àï
+è§£æä¸€è¡Œé…ç½®ï¼Œè§£æå®Œæˆåé…ç½®å­˜æ”¾åœ¨ç»“æ„ä½“ advconf_hashtable é‡Œ
 
-@param linedata ÊäÈëÅäÖÃĞĞ
-@param table ÅäÖÃ¹şÏ£±íÊ×µØÖ·
-@param tablenum ÅäÖÃ¹şÏ£±í´óĞ¡
-@return ³É¹¦·µ»ØADV_KILL_OK£¬Ê§°Ü·µ»ØADV_KILL_FAIL
+@param linedata è¾“å…¥é…ç½®è¡Œ
+@param table é…ç½®å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum é…ç½®å“ˆå¸Œè¡¨å¤§å°
+@return æˆåŠŸè¿”å›ADV_KILL_OKï¼Œå¤±è´¥è¿”å›ADV_KILL_FAIL
 */
 int parse_advconf_line_data(char *linedata, struct advconf_hashtable *table, int tablenum)
 {

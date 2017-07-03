@@ -3,14 +3,14 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		È¥¹ã¸æÓ¦ÓÃÖĞµÄÖ÷¿ØÎÄ¼ş
+@brief		å»å¹¿å‘Šåº”ç”¨ä¸­çš„ä¸»æ§æ–‡ä»¶
 
 @note
-È¥¹ã¸æÓ¦ÓÃÖ÷¿ØÎÄ¼ş£¬Ö÷ÒªÁ÷³Ì¼ÓÔØÄÚºËÄ£¿é£¬×¢²ánetfilter¹³×Óº¯Êı£¬
-×¥È¡Êı¾İ°ü²¢¸ù¾İÔ¤ÅäÖÃ¹æÔò½øĞĞÆ¥Åä£¬ÈôÆ¥Åäµ½ÔÙ¸ù¾İÔ¤ÅäÖÃ¹æÔò½øĞĞ
-Ò»ÏµÁĞÔ¤¶¨Òå²Ù×÷¡£
+å»å¹¿å‘Šåº”ç”¨ä¸»æ§æ–‡ä»¶ï¼Œä¸»è¦æµç¨‹åŠ è½½å†…æ ¸æ¨¡å—ï¼Œæ³¨å†Œnetfilteré’©å­å‡½æ•°ï¼Œ
+æŠ“å–æ•°æ®åŒ…å¹¶æ ¹æ®é¢„é…ç½®è§„åˆ™è¿›è¡ŒåŒ¹é…ï¼Œè‹¥åŒ¹é…åˆ°å†æ ¹æ®é¢„é…ç½®è§„åˆ™è¿›è¡Œ
+ä¸€ç³»åˆ—é¢„å®šä¹‰æ“ä½œã€‚
 */
-#include <linux/slab.h>
+
 #include <linux/netfilter.h>
 #include <linux/netfilter_ipv4.h>
 #include <linux/netfilter_bridge.h>
@@ -28,7 +28,7 @@
 #include <linux/in.h>
 #include <linux/module.h>
 #include <linux/sched.h>   //wake_up_process()
-#include <linux/kthread.h> 
+#include <linux/kthread.h>
 
 #include "advkill.h"
 #include "strcmd.h"
@@ -37,7 +37,7 @@
 #include "advhash.h"
 
 /**
-ÄÚºËÄ£¿éÉùÃ÷
+å†…æ ¸æ¨¡å—å£°æ˜
 */
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Aaron");
@@ -45,14 +45,13 @@ MODULE_DESCRIPTION("Aaron's project kill advertisement");
 MODULE_VERSION("1.0");
 
 /* advertisement config */
-struct advconf_hashtable *g_advconf_hashtable = NULL;	///< È¥¹ã¸æÅäÖÃÈ«¾Ö±äÁ¿£¬ÎªÅäÖÃ¹şÏ£±íÊ×µØÖ·
-struct mutex g_advconf_mutex;	///< È«¾Ö»¥³â±äÁ¿£¬·ÀÖ¹ÔÚ³ÌĞòÔËĞĞÖĞ¶¯Ì¬ĞŞ¸ÄÅäÖÃÒıÆğ³åÍ»
+struct advconf_hashtable *g_advconf_hashtable = NULL;	///< å»å¹¿å‘Šé…ç½®å…¨å±€å˜é‡ï¼Œä¸ºé…ç½®å“ˆå¸Œè¡¨é¦–åœ°å€
+struct mutex g_advconf_mutex;	///< å…¨å±€äº’æ–¥å˜é‡ï¼Œé˜²æ­¢åœ¨ç¨‹åºè¿è¡Œä¸­åŠ¨æ€ä¿®æ”¹é…ç½®å¼•èµ·å†²çª
 
-static char *g_location = NULL;	///< È«¾Ö±äÁ¿£¬ÔİÊ±±£´æHTTPÇëÇóÖĞµÄlocationÄÚÈİ
-static char *g_shost = NULL;	///< È«¾Ö±äÁ¿£¬ÔİÊ±±£´æHTTPÇëÇóÖĞµÄHostÄÚÈİ
-static char *g_referer = NULL;	///< È«¾Ö±äÁ¿£¬ÔİÊ±±£´æHTTPÇëÇóÖĞµÄReferer×Ö¶Î
-static char *g_surl = NULL;		///< È«¾Ö±äÁ¿£¬ÔİÊ±±£´æHTTPÇëÇóÖĞµÄURLÄÚÈİ
-//static char *g_method = NULL; //< È«¾Ö±äÁ¿£¬ÔİÊ±±£´æHTTPÇëÇóµÄ·½·¨
+static char *g_location = NULL;	///< å…¨å±€å˜é‡ï¼Œæš‚æ—¶ä¿å­˜HTTPè¯·æ±‚ä¸­çš„locationå†…å®¹
+static char *g_shost = NULL;	///< å…¨å±€å˜é‡ï¼Œæš‚æ—¶ä¿å­˜HTTPè¯·æ±‚ä¸­çš„Hostå†…å®¹
+static char *g_referer = NULL;	///< å…¨å±€å˜é‡ï¼Œæš‚æ—¶ä¿å­˜HTTPè¯·æ±‚ä¸­çš„Refererå­—æ®µ
+static char *g_surl = NULL;		///< å…¨å±€å˜é‡ï¼Œæš‚æ—¶ä¿å­˜HTTPè¯·æ±‚ä¸­çš„URLå†…å®¹
 //static unsigned long long g_adv_num = 0;
 
 #ifdef ADVKILL_CHECK_MEM
@@ -63,9 +62,9 @@ unsigned long long int g_free_size = 0;
 #endif
 
 /**
-³õÊ¼»¯È«¾Ö²ÎÊı
+åˆå§‹åŒ–å…¨å±€å‚æ•°
 
-Ö÷ÒªÎªÈ«¾Ö±äÁ¿ÉêÇë¿Õ¼ä£¬ÒÔ±ã±ÜÃâÃ¿´ÎÊ¹ÓÃ¶¼ÉêÇë/ÊÍ·Å¿Õ¼ä£¬¼õÉÙÄÚ´æ²Ù×÷¡£
+ä¸»è¦ä¸ºå…¨å±€å˜é‡ç”³è¯·ç©ºé—´ï¼Œä»¥ä¾¿é¿å…æ¯æ¬¡ä½¿ç”¨éƒ½ç”³è¯·/é‡Šæ”¾ç©ºé—´ï¼Œå‡å°‘å†…å­˜æ“ä½œã€‚
 */
 int global_parameter_init(void)
 {
@@ -106,9 +105,9 @@ int global_parameter_init(void)
 }
 
 /**
-ÊÍ·ÅÈ«¾Ö±äÁ¿Õ¼ÓÃÄÚ´æ¿Õ¼ä
+é‡Šæ”¾å…¨å±€å˜é‡å ç”¨å†…å­˜ç©ºé—´
 
-³ÌĞòÍË³öÊ±£¬ÊÍ·ÅËùÓĞ±äÁ¿µÄÄÚ´æ¿Õ¼ä¡£
+ç¨‹åºé€€å‡ºæ—¶ï¼Œé‡Šæ”¾æ‰€æœ‰å˜é‡çš„å†…å­˜ç©ºé—´ã€‚
 */
 void global_parameter_destroy(void)
 {
@@ -135,9 +134,9 @@ void global_parameter_destroy(void)
 }
 
 /**
-³ÌĞòÆô¶¯ÒµÎñ²Ù×÷Ç°µÄ×¼±¸¹¤×÷
+ç¨‹åºå¯åŠ¨ä¸šåŠ¡æ“ä½œå‰çš„å‡†å¤‡å·¥ä½œ
 
-°üÀ¨³õÊ¼»¯È«¾Ö±äÁ¿£¬ÉêÇëÄÚ´æ¿Õ¼ä£¬´´½¨procÎÄ¼şÏµÍ³£¬³õÊ¼»¯ÅäÖÃ¹şÏ£±í¡£
+åŒ…æ‹¬åˆå§‹åŒ–å…¨å±€å˜é‡ï¼Œç”³è¯·å†…å­˜ç©ºé—´ï¼Œåˆ›å»ºprocæ–‡ä»¶ç³»ç»Ÿï¼Œåˆå§‹åŒ–é…ç½®å“ˆå¸Œè¡¨ã€‚
 */
 int advkill_prepare(void)
 {
@@ -166,9 +165,9 @@ int advkill_prepare(void)
 }
 
 /**
-³ÌĞòÍË³öÇ°µÄ²Ù×÷
+ç¨‹åºé€€å‡ºå‰çš„æ“ä½œ
 
-°üÀ¨É¾³ıprocÎÄ¼şÏµÍ³£¬ÊÍ·ÅÈ«¾Ö¹şÏ£±í(ÅäÖÃ),ÊÍ·ÅÈ«¾Ö±äÁ¿µÄ¡£
+åŒ…æ‹¬åˆ é™¤procæ–‡ä»¶ç³»ç»Ÿï¼Œé‡Šæ”¾å…¨å±€å“ˆå¸Œè¡¨(é…ç½®),é‡Šæ”¾å…¨å±€å˜é‡çš„ã€‚
 */
 void advkill_finish(void)
 {
@@ -178,64 +177,39 @@ void advkill_finish(void)
 	mutex_destroy(&g_advconf_mutex);
 }
 
-#define IPPROTO_TCP  6
-#define IPPROTO_UDP 17
-#define IPPROTO_ICMP 1
-
-static inline int payload_offset(const struct sk_buff *skb)
-{
-	int ip_hl = 4*ip_hdr(skb)->ihl;
-
-	if( ip_hdr(skb)->protocol == IPPROTO_TCP ) {
-		int tcp_hl = 4*(skb->data[ip_hl + 12] >> 4);
-		return ip_hl + tcp_hl;
-	} else if( ip_hdr(skb)->protocol == IPPROTO_UDP  ) {
-		return ip_hl + 8; 
-	} else if( ip_hdr(skb)->protocol == IPPROTO_ICMP ) {
-		return ip_hl + 8;
-	} else {
-		return ip_hl + 8;
-	}
-}
-
-
 /**
-netfilter×¢²á¹³×Óº¯Êı£¬º¯ÊıÔ­ĞÍÎªÄÚºËÈ·¶¨
+netfilteræ³¨å†Œé’©å­å‡½æ•°ï¼Œå‡½æ•°åŸå‹ä¸ºå†…æ ¸ç¡®å®š
 
-ÔÚ¸Ã¹³×Óº¯ÊıÄÚ½øĞĞÈ¥¹ã¸æÒµÎñ´¦Àí¡£
+åœ¨è¯¥é’©å­å‡½æ•°å†…è¿›è¡Œå»å¹¿å‘Šä¸šåŠ¡å¤„ç†ã€‚
 */
-
-
-#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,22)
-static u_int32_t hook_func(unsigned int hook,
-						    struct sk_buff **pskb,
-					           const struct net_device *in,
-					           const struct net_device *out,
-					           int (*okfn)(struct sk_buff *))
+#if (LINUX_VERSION_CODE < KERNEL_VERSION (3, 13, 0))
+unsigned int hook_func(	unsigned int hooknum,
+						struct sk_buff **skb,
+						const struct net_device *in,
+						const struct net_device *out,
+						int (*okfn)(struct sk_buff *)
+						)
 #else
-static u_int32_t hook_func(unsigned int hook,
-						    struct sk_buff *pskb,
-					           const struct net_device *in,
-					           const struct net_device *out,
-					           int (*okfn)(struct sk_buff *))
+unsigned int hook_func(const struct nf_hook_ops *ops,
+				struct sk_buff *skb,
+				const struct net_device *in,
+				const struct net_device *out,
+				int (*okfn)(struct sk_buff *))
 #endif
-{	
-
-
+{
 	struct iphdr *iph = NULL;
 	struct tcphdr *tcph = NULL;
-	#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,22)
-		struct sk_buff *sb = *pskb;
-	#else
-		struct sk_buff *sb = pskb;
-	#endif
+#if (LINUX_VERSION_CODE < KERNEL_VERSION (3, 13, 0))
+	struct sk_buff *sb = *skb;
+#else
+	struct sk_buff *sb = skb;
+#endif
 	char *httpcontent = NULL;
-	char *tmp_payload = NULL;
 	int httpcontentlen = 0;
-	char *shost = NULL;//, *method = NULL;
+	char *shost = NULL;
 	char *referer = NULL;
 	int refererlen = 0;
-	int shostlen = 0;//, methodlen = 0;
+	int shostlen = 0;
 	char *surl = NULL;
 	int surllen = 0;
 	int ret = ADV_KILL_OK;
@@ -254,21 +228,19 @@ static u_int32_t hook_func(unsigned int hook,
 	{
 		goto exit_no_cmd;
 	}
-	//printk( "sip[%08x],dip[%08x],proto[%d]\n", iph->saddr, iph->daddr, iph->protocol);
-
+	//printk(KERN_INFO "sip[%08x],dip[%08x],proto[%d]\n", iph->saddr, iph->daddr, iph->protocol);
 	/* is not tcp protocol,return accept */
 	if(iph->protocol != IPPROTO_TCP)
 	{
 		goto exit_no_cmd;
 	}
-	tmp_payload = sb->data;
 	/* find tcp header and tcp data len */
 	tcph = (struct tcphdr *) ((unsigned char *)iph + (iph->ihl * 4));
 	if (0 != skb_linearize(sb)) 
 	{
 		goto exit_no_cmd;
 	}
-	//printk("tcp sport[%d],dport[%d]\n", tcph->source, tcph->dest);
+	//printk(KERN_INFO "tcp sport[%d],dport[%d]\n", tcph->source, tcph->dest);
 	httpcontentlen = (ntohs(iph->tot_len) - iph->ihl*4 - tcph->doff*4);
 	if (httpcontentlen <= HTTP_MIN_LEN)
 	{
@@ -277,34 +249,14 @@ static u_int32_t hook_func(unsigned int hook,
 	}
 
 	httpcontent = (char *) ((unsigned char *)tcph + tcph->doff*4);
-	if (strncmp(httpcontent, HTTP_METHOD_FLAG, HTTP_METHOD_FLAG_LEN) != 0)
+	/*if (strncmp(httpcontent, HTTP_METHOD_FLAG, HTTP_METHOD_FLAG_LEN) != 0)
 	{
 		goto exit_no_cmd;
-	}
-	//if(strstr(httpcontent, "GET /livemsg?")) {     //for tencent live   ÌÚÑ¶ÊÓÆµÊÖ»ú¶Ë
-		//printk("#####____________ httpcontent:[%s]_____________####\n", httpcontent);
-		/*ret = send_client_notfound(sb);	
-		if (ret != ADV_KILL_OK) {
-			ADV_PRINT_ERROR("send_client_notfound failed\n");
-			goto exit_no_cmd;
-		}
-		skbuffoper = 1;
-		goto exit_free;*/
-	//}
+	}*/
 	memset(g_shost, 0, ADV_MAX_SHOST_LEN);
 	shost = get_http_field(httpcontent, httpcontentlen, HTTP_HOST_FLAG, HTTP_HOST_FLAG_LEN, g_shost, ADV_MAX_SHOST_LEN, &shostlen);
 	if (shost == NULL)
 	{
-		if(strstr(httpcontent, "GET /livemsg?")) {     //for tencent live   ÌÚÑ¶ÊÓÆµÊÖ»ú¶Ë
-			//printk("#####____________ httpcontent:[%s]_____________####\n", httpcontent);
-			ret = send_client_notfound(sb);	
-			if (ret != ADV_KILL_OK) {
-				ADV_PRINT_ERROR("send_client_notfound failed\n");
-				goto exit_no_cmd;
-			}
-			skbuffoper = 1;
-			goto exit_free;
-		}
 		goto exit_no_cmd;
 	}
 
@@ -322,7 +274,7 @@ static u_int32_t hook_func(unsigned int hook,
 		referer = NULL;
 	}
 	
-	//printk( "surl[%s]\n", surl);
+	//printk(KERN_ALERT "surl[%s]\n", surl);
 #if 0
 	/* check host is digit or not,eg:192.168.1.1 */
 	if (is_digit_host(shost) == ADV_KILL_OK)
@@ -347,6 +299,7 @@ static u_int32_t hook_func(unsigned int hook,
 		}*/
 	}
 #endif
+	
 	/* check domain is contain date or not,eg: 20131223.logic.cpm.cm.sandai.net */
 	if (domain_contain_digits(shost, XUNLEI_KANKAN_DOMAIN_DIGIT_NUM) == ADV_KILL_OK)
 	{
@@ -363,8 +316,7 @@ static u_int32_t hook_func(unsigned int hook,
 			goto find_url;
 		}
 	}
-		
-
+	
 	ADVKILL_MUTEX_LOCK(&g_advconf_mutex);
 	tmphost = advconf_hashnode_find_by_host(g_advconf_hashtable, HOST_HASH_SIZE, shost, referer);
 	if (tmphost == NULL)
@@ -373,29 +325,29 @@ static u_int32_t hook_func(unsigned int hook,
 		goto exit_no_cmd;
 	}
 
-	//printk(KERN_ALERT "find shost:[%s],surl[%s]\n", shost, surl);
-	//advconf_hashtable_print_all(g_advconf_hashtable, HOST_HASH_SIZE);
+#ifdef ADVKILL_PRINT_DEBUG_INFO
+	printk(KERN_ALERT "find shost:[%s],surl[%s]\n", shost, surl);
+#endif
+
 find_url:
 	tmpmap = advconf_hostmap_find_by_url(tmphost, surl);
-	//printk("______________%d_______________\n",__LINE__);
 	if (tmpmap == NULL)
 	{
 		ADVKILL_MUTEX_UNLOCK(&g_advconf_mutex);
-		//printk("______________%d_______________\n",__LINE__);
 		goto exit_no_cmd;
 	}
+
 #ifdef ADVKILL_PRINT_DEBUG_INFO
 	printk(KERN_ALERT "find surl:%s,dev[%s]\n", surl, sb->dev->name);
 #endif
+
 	if (tmphost->type == adv_redirect_player)
 	{
-		
-		
 		//printk(KERN_ALERT "redirect url\n");
 		memset(g_location, 0, ADV_MAX_LOCATION_LEN);
 		http_location_generate(g_location, ADV_MAX_LOCATION_LEN, tmphost->d_host, tmpmap->durl);
 		ADVKILL_MUTEX_UNLOCK(&g_advconf_mutex);
-		printk(KERN_ALERT "location [%s]\n", g_location);
+		//printk(KERN_ALERT "location [%s]\n", g_location);
 #ifdef ADVKILL_PRINT_DEBUG_INFO
 		printk(KERN_ALERT "begin send_client_location\n");
 #endif
@@ -415,15 +367,12 @@ find_url:
 	}
 	else if (tmphost->type == adv_drop_request)
 	{
-		
-		//printk("drop request,url=%s\n",surl);
 		ADVKILL_MUTEX_UNLOCK(&g_advconf_mutex);
 		if (is_contain_except_url(g_surl, tmphost) == ADV_KILL_OK)
 		{
 			goto exit_no_cmd;
 		}
-		ret = send_client_notfound(sb);	
-
+		ret = send_client_notfound(sb);
 		if (ret != ADV_KILL_OK)
 		{
 			ADV_PRINT_ERROR("send_client_notfound failed\n");
@@ -435,9 +384,6 @@ find_url:
 	}
 	else if (tmphost->type == adv_modify_url)
 	{
-		
-		//printk("modify url ,url=%s\n",surl);
-
 		ADVKILL_MUTEX_UNLOCK(&g_advconf_mutex);
 
 #ifdef ADVKILL_PRINT_DEBUG_INFO
@@ -483,7 +429,6 @@ find_url:
 		{
 			goto exit_no_cmd;
 		}
-		//printk("fake request,url=%s\n",surl);
 		ret = send_client_fake_message(sb,tmphost->d_host,tmphost->map[0].durl);
 		if (ret != ADV_KILL_OK)
 		{
@@ -544,7 +489,7 @@ void advconf_hashnode_add_by_number(int num)
 #endif
 
 /**
-ÄÚºËÄ£¿éÈë¿Ú£¬³õÊ¼»¯³ÌĞò²¢×¢²á¹³×Óº¯Êı
+å†…æ ¸æ¨¡å—å…¥å£ï¼Œåˆå§‹åŒ–ç¨‹åºå¹¶æ³¨å†Œé’©å­å‡½æ•°
 */
 
 static int __init adv_kill_module_init(void)
@@ -567,7 +512,7 @@ static int __init adv_kill_module_init(void)
 }
 
 /**
-ÄÚºËÄ£¿é³ö¿Ú£¬×öÊÕÎ²¹¤×÷²¢×¢Ïú¹³×Óº¯Êı
+å†…æ ¸æ¨¡å—å‡ºå£ï¼Œåšæ”¶å°¾å·¥ä½œå¹¶æ³¨é”€é’©å­å‡½æ•°
 */
 static void __exit adv_kill_module_exit(void)
 {

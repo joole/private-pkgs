@@ -3,10 +3,10 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		procÎÄ¼şÏµÍ³Ïà¹Ø²Ù×÷½Ó¿Ú
+@brief		procæ–‡ä»¶ç³»ç»Ÿç›¸å…³æ“ä½œæ¥å£
 
 @note
-´´½¨procÎÄ¼ş£¬É¾³ıprocÎÄ¼ş£¬¶ÁĞ´procÎÄ¼ş²Ù×÷
+åˆ›å»ºprocæ–‡ä»¶ï¼Œåˆ é™¤procæ–‡ä»¶ï¼Œè¯»å†™procæ–‡ä»¶æ“ä½œ
 */
 
 #include "advkill.h"
@@ -23,50 +23,51 @@ extern unsigned long long int g_free_times;
 extern unsigned long long int g_free_size;
 #endif
 
-static struct proc_dir_entry *proc_dir = NULL;	///< procÎÄ¼şÖĞÎÄ¼ş¼Ğ
-static struct proc_dir_entry *proc_advkill_conf = NULL; ///< procÎÄ¼şÖĞÎÄ¼ş
+static struct proc_dir_entry *proc_dir = NULL;	///< procæ–‡ä»¶ä¸­æ–‡ä»¶å¤¹
+static struct proc_dir_entry *proc_advkill_conf = NULL; ///< procæ–‡ä»¶ä¸­æ–‡ä»¶
 static int advkill_conf_index;  
 static int advkill_conf_next;
-static char *advkillconfdata = NULL; ///< ÄÚºËÖĞÈ¥¹ã¸æÅäÖÃ»º³åÇøµØÖ·
+static char *advkillconfdata = NULL; ///< å†…æ ¸ä¸­å»å¹¿å‘Šé…ç½®ç¼“å†²åŒºåœ°å€
 
 /**
-´ÓÓÃ»§¿Õ¼ä½«Êı¾İ¶ÁÈ¡µ½ÄÚºË¿Õ¼ä£¬½âÎöºó±£´æÔÚ¹şÏ£±íÖĞ
+ä»ç”¨æˆ·ç©ºé—´å°†æ•°æ®è¯»å–åˆ°å†…æ ¸ç©ºé—´ï¼Œè§£æåä¿å­˜åœ¨å“ˆå¸Œè¡¨ä¸­
 
-@param filp ÎÄ¼ş½á¹¹ÌåÖ¸Õë£¬±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param buff ÓÃ»§¿Õ¼äÊı¾İµØÖ·
-@param len ÓÃ»§¿Õ¼äÊı¾İ³¤¶È
-@param data ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@return ·µ»Ø¶ÁÈ¡µÄ³¤¶È
+@param filp æ–‡ä»¶ç»“æ„ä½“æŒ‡é’ˆï¼Œæœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param buff ç”¨æˆ·ç©ºé—´æ•°æ®åœ°å€
+@param len ç”¨æˆ·ç©ºé—´æ•°æ®é•¿åº¦
+@param data æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@return è¿”å›è¯»å–çš„é•¿åº¦
 */
 #if (LINUX_VERSION_CODE < KERNEL_VERSION (3, 10, 0))
 static ssize_t advkill_conf_write( struct file *filp, const char __user *buff, unsigned long len, void *data);
 #else
 static ssize_t advkill_conf_write( struct file *filp, const char __user *buff, size_t len, loff_t *data);
 #endif
-
 /**
-´ÓÄÚºË¿Õ¼ä½«È¥¹ã¸æÅäÖÃÄÚ´æ¿½±´µ½ÓÃ»§¿Õ¼ä
+ä»å†…æ ¸ç©ºé—´å°†å»å¹¿å‘Šé…ç½®å†…å­˜æ‹·è´åˆ°ç”¨æˆ·ç©ºé—´
 
-@param page ÓÃ»§¿Õ¼ä½ÓÊÕÊı¾İµÄµØÖ·
-@param start ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param off ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param count ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param eof ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param data ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@return ·µ»ØĞ´ÈëµÄ³¤¶È
+@param page ç”¨æˆ·ç©ºé—´æ¥æ”¶æ•°æ®çš„åœ°å€
+@param start æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param off æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param count æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param eof æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param data æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@return è¿”å›å†™å…¥çš„é•¿åº¦
 */
 #if (LINUX_VERSION_CODE < KERNEL_VERSION (3, 10, 0))
 static int advkill_conf_read( char *page, char **start, off_t off, int count, int *eof, void *data);
 #endif
-/**
-´ÓÓÃ»§¿Õ¼ä½«Êı¾İ¶ÁÈ¡µ½ÄÚºË¿Õ¼ä£¬½âÎöºó±£´æÔÚ¹şÏ£±íÖĞ
 
-@param filp ÎÄ¼ş½á¹¹ÌåÖ¸Õë£¬±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param buff ÓÃ»§¿Õ¼äÊı¾İµØÖ·
-@param len ÓÃ»§¿Õ¼äÊı¾İ³¤¶È
-@param data ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@return ·µ»Ø¶ÁÈ¡µÄ³¤¶È
+/**
+ä»ç”¨æˆ·ç©ºé—´å°†æ•°æ®è¯»å–åˆ°å†…æ ¸ç©ºé—´ï¼Œè§£æåä¿å­˜åœ¨å“ˆå¸Œè¡¨ä¸­
+
+@param filp æ–‡ä»¶ç»“æ„ä½“æŒ‡é’ˆï¼Œæœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param buff ç”¨æˆ·ç©ºé—´æ•°æ®åœ°å€
+@param len ç”¨æˆ·ç©ºé—´æ•°æ®é•¿åº¦
+@param data æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@return è¿”å›è¯»å–çš„é•¿åº¦
 */
+
 #if (LINUX_VERSION_CODE < KERNEL_VERSION (3, 10, 0))
 static ssize_t advkill_conf_write( struct file *filp, const char __user *buff, unsigned long len, void *data)
 #else
@@ -101,15 +102,15 @@ static ssize_t advkill_conf_write( struct file *filp, const char __user *buff, s
 }
 
 /**
-´ÓÄÚºË¿Õ¼ä½«È¥¹ã¸æÅäÖÃÄÚ´æ¿½±´µ½ÓÃ»§¿Õ¼ä
+ä»å†…æ ¸ç©ºé—´å°†å»å¹¿å‘Šé…ç½®å†…å­˜æ‹·è´åˆ°ç”¨æˆ·ç©ºé—´
 
-@param page ÓÃ»§¿Õ¼ä½ÓÊÕÊı¾İµÄµØÖ·
-@param start ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param off ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param count ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param eof ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@param data ±¾½Ó¿Ú¶Ô´ËÃ»ÓĞ²Ù×÷£¬ÎªÄÚºËº¯Êı²ÎÊı¸ñÊ½
-@return ·µ»ØĞ´ÈëµÄ³¤¶È
+@param page ç”¨æˆ·ç©ºé—´æ¥æ”¶æ•°æ®çš„åœ°å€
+@param start æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param off æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param count æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param eof æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@param data æœ¬æ¥å£å¯¹æ­¤æ²¡æœ‰æ“ä½œï¼Œä¸ºå†…æ ¸å‡½æ•°å‚æ•°æ ¼å¼
+@return è¿”å›å†™å…¥çš„é•¿åº¦
 */
 #if (LINUX_VERSION_CODE < KERNEL_VERSION (3, 10, 0))
 static int advkill_conf_read( char *page, char **start, off_t off, int count, int *eof, void *data)
@@ -151,9 +152,9 @@ static const struct file_operations advkill_fops = {
 };
 #endif
 /**
-´´½¨ĞèÒªÓÃµ½µÄprocÎÄ¼ş
+åˆ›å»ºéœ€è¦ç”¨åˆ°çš„procæ–‡ä»¶
 
-@return ³É¹¦·µ»Ø RR_OK£¬Ê§°Ü·µ»Ø RR_FAIL¡£
+@return æˆåŠŸè¿”å› RR_OKï¼Œå¤±è´¥è¿”å› RR_FAILã€‚
 */
 int create_proc_file(void)
 {
@@ -210,7 +211,7 @@ exit_fail:
 }
 
 /**
-É¾³ıprocÎÄ¼ş
+åˆ é™¤procæ–‡ä»¶
 */
 void destroy_proc_file(void)
 {

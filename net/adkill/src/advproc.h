@@ -3,10 +3,10 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		procÎÄ¼şÏµÍ³Ïà¹Ø²Ù×÷½Ó¿Ú
+@brief		procæ–‡ä»¶ç³»ç»Ÿç›¸å…³æ“ä½œæ¥å£
 
 @note
-´´½¨procÎÄ¼ş£¬É¾³ıprocÎÄ¼ş£¬¶ÁĞ´procÎÄ¼ş²Ù×÷
+åˆ›å»ºprocæ–‡ä»¶ï¼Œåˆ é™¤procæ–‡ä»¶ï¼Œè¯»å†™procæ–‡ä»¶æ“ä½œ
 */
 
 #ifndef _ADV_PROC_H_
@@ -15,10 +15,10 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		È¥¹ã¸æÓ¦ÓÃµÄprocÎÄ¼ş
+@brief		å»å¹¿å‘Šåº”ç”¨çš„procæ–‡ä»¶
 
 @note
-´´½¨procÎÄ¼ş£¬É¾³ıprocÎÄ¼ş
+åˆ›å»ºprocæ–‡ä»¶ï¼Œåˆ é™¤procæ–‡ä»¶
 */
 #define _ADV_PROC_H_
 
@@ -32,19 +32,19 @@
 #include <linux/vmalloc.h>
 #include <asm/uaccess.h>
 
-#define MAX_ADVKILL_CONF_LEN					1024			///< procÎÄ¼şÏµÍ³ÖĞÃ¿ÌõÅäÖÃ×î´ó³¤¶È
-#define ADV_KILL_PROC_DIRECTORY					"advkill"		///< procÎÄ¼şÄ¿Â¼Ãû³Æ
-#define ADV_KILL_PROC_FILE						"advconf"		///< procÎÄ¼şÃû³Æ
+#define MAX_ADVKILL_CONF_LEN					1024			///< procæ–‡ä»¶ç³»ç»Ÿä¸­æ¯æ¡é…ç½®æœ€å¤§é•¿åº¦
+#define ADV_KILL_PROC_DIRECTORY					"advkill"		///< procæ–‡ä»¶ç›®å½•åç§°
+#define ADV_KILL_PROC_FILE						"advconf"		///< procæ–‡ä»¶åç§°
 
 /**
-´´½¨ĞèÒªÓÃµ½µÄprocÎÄ¼ş
+åˆ›å»ºéœ€è¦ç”¨åˆ°çš„procæ–‡ä»¶
 
-@return ³É¹¦·µ»Ø RR_OK£¬Ê§°Ü·µ»Ø RR_FAIL¡£
+@return æˆåŠŸè¿”å› RR_OKï¼Œå¤±è´¥è¿”å› RR_FAILã€‚
 */
 int create_proc_file(void);
 
 /**
-É¾³ıprocÎÄ¼ş
+åˆ é™¤procæ–‡ä»¶
 */
 void destroy_proc_file(void);
 

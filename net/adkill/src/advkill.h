@@ -3,21 +3,22 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		È¥¹ã¸æÓ¦ÓÃÖĞÓÃµ½µÄÖ÷ÒªÊı¾İ½á¹¹
+@brief		å»å¹¿å‘Šåº”ç”¨ä¸­ç”¨åˆ°çš„ä¸»è¦æ•°æ®ç»“æ„
 
 @note		
-È¥¹ã¸æÓ¦ÓÃÖĞÖ÷ÒªÊı¾İ½á¹¹£¬¼ÇÂ¼ÁËĞèÒªĞŞ¸ÄÊı¾İ°üµÄÍøÕ¾£¬ĞŞ¸Ä¹æÔòµÈĞÅÏ¢¡£
+å»å¹¿å‘Šåº”ç”¨ä¸­ä¸»è¦æ•°æ®ç»“æ„ï¼Œè®°å½•äº†éœ€è¦ä¿®æ”¹æ•°æ®åŒ…çš„ç½‘ç«™ï¼Œä¿®æ”¹è§„åˆ™ç­‰ä¿¡æ¯ã€‚
 */
 
 #ifndef _ADV_KILL_H_
 #define _ADV_KILL_H_
 
+#include <linux/slab.h>
 #include <linux/types.h>
 #include <linux/mm.h>
 #include <linux/string.h>
 #include <linux/list.h>
-#include <linux/slab.h>
 #include <linux/version.h>
+
 #define _BO_TONG_								1
 
 //#define	ADVKILL_PRINT_DEBUG_INFO				1
@@ -30,14 +31,11 @@
 #define ADV_MAX_SHOST_LEN						128
 #define ADV_MAX_REFERER_LEN						128
 #define ADV_MAX_SURL_LEN						1024
-#define ADV_MAX_METHOD_LEN					4
-
 
 #ifndef ADVKILL_CHECK_MEM
 #define ADVKILL_CALLOC(n, size)				kcalloc(n, size, GFP_KERNEL)
 #define ADVKILL_FREE(addr, size)			kfree(addr)
 #else
-
 #define ADVKILL_CALLOC(n, size)				kcalloc(n, size, GFP_KERNEL);(g_calloc_times++);(g_calloc_size+=((n)*(size)))
 #define ADVKILL_FREE(addr, size)			kfree(addr);(g_free_times++);(g_free_size+=(size))
 #endif
@@ -52,54 +50,54 @@
 #define ADVKILL_MUTEX_UNLOCK(mutex)			mutex_unlock(mutex)
 
 /**
-¼ÇÂ¼È¥¹ã¸æÅäÖÃ¹æÔò
+è®°å½•å»å¹¿å‘Šé…ç½®è§„åˆ™
 
-Ö÷Òª¼ÇÂ¼ÒªÆ¥ÅäµÄÔ´URLºÍÒªĞŞ¸Ä³ÉµÄURL
+ä¸»è¦è®°å½•è¦åŒ¹é…çš„æºURLå’Œè¦ä¿®æ”¹æˆçš„URL
 */
 struct advconf_hostmap
 {
-	char *surl;		///< Æ¥Åäµ½µÄÔ´URL
-	char *durl;		///< ÒªĞŞ¸Ä³ÉµÄURL
-	int surllen;	///< Ô´RUL³¤¶È
-	int durllen;	///< ÒªĞŞ¸Ä³ÉµÄURL³¤¶È
+	char *surl;		///< åŒ¹é…åˆ°çš„æºURL
+	char *durl;		///< è¦ä¿®æ”¹æˆçš„URL
+	int surllen;	///< æºRULé•¿åº¦
+	int durllen;	///< è¦ä¿®æ”¹æˆçš„URLé•¿åº¦
 };
 
 /**
-È¥¹ã¸æÅäÖÃÄ£Ê½
+å»å¹¿å‘Šé…ç½®æ¨¡å¼
 
-adv_redirect_player: ÖØ¶¨Ïò²¥·ÅÆ÷£¬Ò»°ã·µ»Ø302
-adv_drop_request: ¶ªÆúÇëÇó°ü£¬Ò»°ã·µ»Ø404
-adv_modify_url: ĞŞ¸ÄÔ´URLÄÚÈİ
-adv_bad_gw: ·µ»Ø´íÎóµÄÍø¹Ø 502
+adv_redirect_player: é‡å®šå‘æ’­æ”¾å™¨ï¼Œä¸€èˆ¬è¿”å›302
+adv_drop_request: ä¸¢å¼ƒè¯·æ±‚åŒ…ï¼Œä¸€èˆ¬è¿”å›404
+adv_modify_url: ä¿®æ”¹æºURLå†…å®¹
+adv_bad_gw: è¿”å›é”™è¯¯çš„ç½‘å…³ 502
 */
 typedef enum {adv_redirect_player=0, adv_drop_request=1, adv_modify_url=2, adv_bad_gw=3, adv_fake_pack=4} ADV_CMD;
 
 /**
-È¥¹ã¸æÓ¦ÓÃÖĞµÄÅäÖÃĞÅÏ¢½á¹¹Ìå
+å»å¹¿å‘Šåº”ç”¨ä¸­çš„é…ç½®ä¿¡æ¯ç»“æ„ä½“
 
-Ö÷Òª¼ÇÂ¼²Ù×÷ÀàĞÍ£¬Ô´Host£¬ĞŞ¸Ä³ÉµÄÄ¿µÄHost£¬ÒÔ¼°URL¹æÔò£¬
-ÆäÖĞURl¹æÔò¿ÉÒÔÊÇ¶àÌ×¡£
+ä¸»è¦è®°å½•æ“ä½œç±»å‹ï¼ŒæºHostï¼Œä¿®æ”¹æˆçš„ç›®çš„Hostï¼Œä»¥åŠURLè§„åˆ™ï¼Œ
+å…¶ä¸­URlè§„åˆ™å¯ä»¥æ˜¯å¤šå¥—ã€‚
 */
 struct advconf_hashnode
 {
-	struct hlist_node node;	///< ¹şÏ£Á´±í½Úµã
-	ADV_CMD type;	///< ÅäÖÃ²Ù×÷ÀàĞÍ
-	int index;	///< ÅäÖÃË÷Òı
-	unsigned char *s_host;	///< ÒªÆ¥ÅäµÄÔ´Host
-	unsigned char *d_host;	///< ÒªĞŞ¸Ä³ÉµÄÄ¿µÄHost
-	unsigned short int s_host_len;	///< ÒªÆ¥ÅäµÄÔ´HostÕ¼ÓÃÄÚ´æ´óĞ¡
-	unsigned short int d_host_len;	///< ÒªĞŞ¸Ä³ÉµÄÄ¿µÄHostÕ¼ÓÃÄÚ´æ´óĞ¡
-	struct advconf_hostmap *map;	///< ÅäÖÃ¹æÔòÖĞURLÅäÖÃ½á¹¹Ê×µØÖ·
-	int mapnum;	///< ÅäÖÃ¹æÔòÖĞURlÅäÖÃµÄ¸öÊı(Í¬Ò»¸öHost¼¸Ì×URl¹æÔò)
+	struct hlist_node node;	///< å“ˆå¸Œé“¾è¡¨èŠ‚ç‚¹
+	ADV_CMD type;	///< é…ç½®æ“ä½œç±»å‹
+	int index;	///< é…ç½®ç´¢å¼•
+	unsigned char *s_host;	///< è¦åŒ¹é…çš„æºHost
+	unsigned char *d_host;	///< è¦ä¿®æ”¹æˆçš„ç›®çš„Host
+	unsigned short int s_host_len;	///< è¦åŒ¹é…çš„æºHostå ç”¨å†…å­˜å¤§å°
+	unsigned short int d_host_len;	///< è¦ä¿®æ”¹æˆçš„ç›®çš„Hostå ç”¨å†…å­˜å¤§å°
+	struct advconf_hostmap *map;	///< é…ç½®è§„åˆ™ä¸­URLé…ç½®ç»“æ„é¦–åœ°å€
+	int mapnum;	///< é…ç½®è§„åˆ™ä¸­URlé…ç½®çš„ä¸ªæ•°(åŒä¸€ä¸ªHostå‡ å¥—URlè§„åˆ™)
 };
 
 /**
-È¥¹ã¸æÅäÖÃÖĞ¹şÏ£Á´±íÍ·
+å»å¹¿å‘Šé…ç½®ä¸­å“ˆå¸Œé“¾è¡¨å¤´
 
 */
 struct advconf_hashtable
 {
-	struct hlist_head head;  ///< ¹şÏ£Á´±íÍ·£¬´ú±í¹şÏ£±íÖĞµÄÆäÖĞÒ»¸ö¹şÏ£Á´±í
+	struct hlist_head head;  ///< å“ˆå¸Œé“¾è¡¨å¤´ï¼Œä»£è¡¨å“ˆå¸Œè¡¨ä¸­çš„å…¶ä¸­ä¸€ä¸ªå“ˆå¸Œé“¾è¡¨
 };
 
 #endif

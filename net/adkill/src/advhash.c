@@ -3,15 +3,15 @@
 @date		2014/07/31
 @author		WangChunyan
 @version	1.0.0
-@brief		ÅäÖÃ¹şÏ£±íÏà¹Ø²Ù×÷½Ó¿Ú
+@brief		é…ç½®å“ˆå¸Œè¡¨ç›¸å…³æ“ä½œæ¥å£
 
 @note
-¹şÏ£±íÏà¹Ø²Ù×÷£¬°üÀ¨¹şÏ£Ëã·¨£¬³õÊ¼»¯£¬½Úµã²åÈë/É¾³ı£¬²éÕÒ£¬ÊÍ·ÅµÈ¡£
+å“ˆå¸Œè¡¨ç›¸å…³æ“ä½œï¼ŒåŒ…æ‹¬å“ˆå¸Œç®—æ³•ï¼Œåˆå§‹åŒ–ï¼ŒèŠ‚ç‚¹æ’å…¥/åˆ é™¤ï¼ŒæŸ¥æ‰¾ï¼Œé‡Šæ”¾ç­‰ã€‚
 */
 
 #include "advhash.h"
 #include "strcmd.h"
-#include <linux/slab.h>
+
 #ifdef ADVKILL_CHECK_MEM
 extern unsigned long long int g_calloc_times;
 extern unsigned long long int g_calloc_size;
@@ -20,10 +20,10 @@ extern unsigned long long int g_free_size;
 #endif
 
 /**
-¼ÆËã×Ö·û´®µÄhashÖµ£¬·µ»ØË÷ÒıÎ»ÖÃ
+è®¡ç®—å­—ç¬¦ä¸²çš„hashå€¼ï¼Œè¿”å›ç´¢å¼•ä½ç½®
 
-@param str ÊäÈë×Ö·û´®
-@return ·µ»Ø×Ö·û´®ÔÚ¹şÏ£±íÖĞµÄË÷Òı
+@param str è¾“å…¥å­—ç¬¦ä¸²
+@return è¿”å›å­—ç¬¦ä¸²åœ¨å“ˆå¸Œè¡¨ä¸­çš„ç´¢å¼•
 */
 unsigned int host_bkdr_hash(unsigned char *str)
 {
@@ -38,10 +38,10 @@ unsigned int host_bkdr_hash(unsigned char *str)
 }
 
 /**
-ÊÍ·ÅURLÅäÖÃÕ¼ÓÃµÄÄÚ´æ¿Õ¼ä
+é‡Šæ”¾URLé…ç½®å ç”¨çš„å†…å­˜ç©ºé—´
 
-@param map URLÅäÖÃ½á¹¹Ê×µØÖ·
-@param mapnum URLÅäÖÃ¸öÊı
+@param map URLé…ç½®ç»“æ„é¦–åœ°å€
+@param mapnum URLé…ç½®ä¸ªæ•°
 */
 void advconf_hostmap_free(struct advconf_hostmap *map, int mapnum)
 {
@@ -65,9 +65,9 @@ void advconf_hostmap_free(struct advconf_hostmap *map, int mapnum)
 }
 
 /**
-ÊÍ·ÅÅäÖÃ¹şÏ£½ÚµãµÄÄÚ´æ¿Õ¼ä
+é‡Šæ”¾é…ç½®å“ˆå¸ŒèŠ‚ç‚¹çš„å†…å­˜ç©ºé—´
 
-@param node ÒªÊÍ·ÅµÄ¹şÏ£½Úµã
+@param node è¦é‡Šæ”¾çš„å“ˆå¸ŒèŠ‚ç‚¹
 */
 void advconf_hashnode_free(struct advconf_hashnode *node)
 {
@@ -91,11 +91,11 @@ void advconf_hashnode_free(struct advconf_hashnode *node)
 }
 
 /**
-³õÊ¼»¯ÅäÖÃ¹şÏ£±í
+åˆå§‹åŒ–é…ç½®å“ˆå¸Œè¡¨
 
-@param table ¹şÏ£±íÊ×µØÖ·ĞèÒª±£´æµÄµØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
-@return ³É¹¦·µ»Ø ADV_KILL_OK£¬Ê§°Ü·µ»Ø ADV_KILL_FAIL¡£
+@param table å“ˆå¸Œè¡¨é¦–åœ°å€éœ€è¦ä¿å­˜çš„åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
+@return æˆåŠŸè¿”å› ADV_KILL_OKï¼Œå¤±è´¥è¿”å› ADV_KILL_FAILã€‚
 */
 int advconf_hashtable_init(struct advconf_hashtable **table, int tablenum)
 {
@@ -114,11 +114,11 @@ int advconf_hashtable_init(struct advconf_hashtable **table, int tablenum)
 }
 
 /**
-Ìí¼ÓÅäÖÃ¹şÏ£½Úµãµ½¹şÏ£±í
+æ·»åŠ é…ç½®å“ˆå¸ŒèŠ‚ç‚¹åˆ°å“ˆå¸Œè¡¨
 
-@param table ÅäÖÃ¹şÏ£±íÊ×µØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
-@param node ÒªÌí¼ÓµÄÅäÖÃ½á¹¹
+@param table é…ç½®å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
+@param node è¦æ·»åŠ çš„é…ç½®ç»“æ„
 */
 void advconf_hashnode_add(struct advconf_hashtable *table, int tablenum, struct advconf_hashnode *node)
 {
@@ -141,12 +141,12 @@ void advconf_hashnode_add(struct advconf_hashtable *table, int tablenum, struct 
 }
 
 /**
-¸ù¾İURL´Ó¹şÏ£±íÖĞ²éÕÒÅäÖÃ½Úµã
+æ ¹æ®URLä»å“ˆå¸Œè¡¨ä¸­æŸ¥æ‰¾é…ç½®èŠ‚ç‚¹
 
-@param table ÅäÖÃ¹şÏ£±íÊ×µØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
-@param url Ô´URL×Ö·û´®
-@return ³É¹¦·µ»Ø ÅäÖÃÏî½á¹¹ÌåµØÖ·£¬Ê§°Ü·µ»Ø NULL¡£
+@param table é…ç½®å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
+@param url æºURLå­—ç¬¦ä¸²
+@return æˆåŠŸè¿”å› é…ç½®é¡¹ç»“æ„ä½“åœ°å€ï¼Œå¤±è´¥è¿”å› NULLã€‚
 */
 struct advconf_hashnode * advconf_hashnode_find_by_url(struct advconf_hashtable *table, int tablenum, char *url)
 {
@@ -185,13 +185,13 @@ struct advconf_hashnode * advconf_hashnode_find_by_url(struct advconf_hashtable 
 }
 
 /**
-¸ù¾İHost´Ó¹şÏ£±íÖĞ²éÕÒÅäÖÃ½Úµã
+æ ¹æ®Hostä»å“ˆå¸Œè¡¨ä¸­æŸ¥æ‰¾é…ç½®èŠ‚ç‚¹
 
-@param table ÅäÖÃ¹şÏ£±íÊ×µØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
-@param host HostÃû³Æ(×Ö·û´®)
-@param referer HTTPĞ­ÒéÖĞµÄreferer×Ö·û´®£¬ÈôÅäÖÃÏîÖĞÓĞÀıÍâÑ¡Ïî£¬Ôòhost²»ÔÚrefererÖĞµÄÅäÖÃÏî²ÅÆ¥Åä
-@return ³É¹¦·µ»Ø ÅäÖÃÏî½á¹¹ÌåµØÖ·£¬Ê§°Ü·µ»Ø NULL¡£
+@param table é…ç½®å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
+@param host Hoståç§°(å­—ç¬¦ä¸²)
+@param referer HTTPåè®®ä¸­çš„refererå­—ç¬¦ä¸²ï¼Œè‹¥é…ç½®é¡¹ä¸­æœ‰ä¾‹å¤–é€‰é¡¹ï¼Œåˆ™hostä¸åœ¨refererä¸­çš„é…ç½®é¡¹æ‰åŒ¹é…
+@return æˆåŠŸè¿”å› é…ç½®é¡¹ç»“æ„ä½“åœ°å€ï¼Œå¤±è´¥è¿”å› NULLã€‚
 */
 struct advconf_hashnode * advconf_hashnode_find_by_host(struct advconf_hashtable *table, int tablenum, char *host, char *referer)
 {
@@ -255,12 +255,12 @@ struct advconf_hashnode * advconf_hashnode_find_by_host(struct advconf_hashtable
 }
 
 /**
-¸ù¾İHost´Ó¹şÏ£±íÖĞÉ¾³ıÅäÖÃ½Úµã
+æ ¹æ®Hostä»å“ˆå¸Œè¡¨ä¸­åˆ é™¤é…ç½®èŠ‚ç‚¹
 
-@param table ÅäÖÃ¹şÏ£±íÊ×µØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
-@param host HostÃû³Æ(×Ö·û´®)
-@return ³É¹¦·µ»Ø ADV_KILL_FAIL£¬Ê§°Ü·µ»Ø ADV_KILL_OK¡£
+@param table é…ç½®å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
+@param host Hoståç§°(å­—ç¬¦ä¸²)
+@return æˆåŠŸè¿”å› ADV_KILL_FAILï¼Œå¤±è´¥è¿”å› ADV_KILL_OKã€‚
 */
 int advconf_hashnode_del_by_host(struct advconf_hashtable *table, int tablenum, char *host)
 {
@@ -295,9 +295,9 @@ int advconf_hashnode_del_by_host(struct advconf_hashtable *table, int tablenum, 
 }
 
 /**
-É¾³ıÒ»Ìõ¹şÏ£Á´±íÖĞµÄËùÓĞÅäÖÃ½Úµã²¢ÊÍ·ÅÄÚ´æ
+åˆ é™¤ä¸€æ¡å“ˆå¸Œé“¾è¡¨ä¸­çš„æ‰€æœ‰é…ç½®èŠ‚ç‚¹å¹¶é‡Šæ”¾å†…å­˜
 
-@param table ÅäÖÃ¹şÏ£Á´±íÍ·
+@param table é…ç½®å“ˆå¸Œé“¾è¡¨å¤´
 */
 void web_conf_data_hashtable_del_all(struct advconf_hashtable *table)
 {
@@ -323,11 +323,11 @@ void web_conf_data_hashtable_del_all(struct advconf_hashtable *table)
 }
 
 /**
-¸ù¾İURL´Ó¹şÏ£ÅäÖÃ½ÚµãÖĞ²éÕÒURLÅäÖÃ
+æ ¹æ®URLä»å“ˆå¸Œé…ç½®èŠ‚ç‚¹ä¸­æŸ¥æ‰¾URLé…ç½®
 
-@param node ÅäÖÃ½ÚµãµØÖ·
-@param surl Ô´URL×Ö·û´®
-@return ³É¹¦·µ»Ø URLÅäÖÃµØÖ·£¬Ê§°Ü·µ»Ø NULL¡£
+@param node é…ç½®èŠ‚ç‚¹åœ°å€
+@param surl æºURLå­—ç¬¦ä¸²
+@return æˆåŠŸè¿”å› URLé…ç½®åœ°å€ï¼Œå¤±è´¥è¿”å› NULLã€‚
 */
 struct advconf_hostmap *advconf_hostmap_find_by_url(struct advconf_hashnode *node, char *surl)
 {
@@ -336,7 +336,6 @@ struct advconf_hostmap *advconf_hostmap_find_by_url(struct advconf_hashnode *nod
 		return NULL;
 	for (i=0; i<node->mapnum; i++)
 	{
-		//printk(KERN_ALERT "surl:[%s],node->map[i].surl[%s]\n", surl, node->map[i].surl);
 		if (strstr(surl, node->map[i].surl) != NULL)
 		{
 			return &node->map[i];
@@ -346,10 +345,10 @@ struct advconf_hostmap *advconf_hostmap_find_by_url(struct advconf_hashnode *nod
 }
 
 /**
-ÊÍ·ÅÅäÖÃ¹şÏ£±í
+é‡Šæ”¾é…ç½®å“ˆå¸Œè¡¨
 
-@param table ¹şÏ£±íÊ×µØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
+@param table å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
 */
 void advconf_hashtable_release(struct advconf_hashtable *table, int tablenum)
 {
@@ -366,10 +365,10 @@ void advconf_hashtable_release(struct advconf_hashtable *table, int tablenum)
 }
 
 /**
-Çå¿Õ¹şÏ£±íÖĞËùÓĞÅäÖÃ
+æ¸…ç©ºå“ˆå¸Œè¡¨ä¸­æ‰€æœ‰é…ç½®
 
-@param table ¹şÏ£±íÊ×µØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
+@param table å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
 */
 void advconf_hashtable_empty(struct advconf_hashtable *table, int tablenum)
 {
@@ -385,9 +384,9 @@ void advconf_hashtable_empty(struct advconf_hashtable *table, int tablenum)
 }
 
 /**
-´òÓ¡ÅäÖÃÏîÄÚËùÓĞĞÅÏ¢(ÓÃÓÚµ÷ÊÔ)
+æ‰“å°é…ç½®é¡¹å†…æ‰€æœ‰ä¿¡æ¯(ç”¨äºè°ƒè¯•)
 
-@param node ÅäÖÃ½ÚµãµØÖ·
+@param node é…ç½®èŠ‚ç‚¹åœ°å€
 */
 void advconf_hashnode_print(struct advconf_hashnode *node)
 {
@@ -401,9 +400,9 @@ void advconf_hashnode_print(struct advconf_hashnode *node)
 }
 
 /**
-´òÓ¡Ò»Ìõ¹şÏ£Á´±íÖĞËùÓĞÅäÖÃĞÅÏ¢
+æ‰“å°ä¸€æ¡å“ˆå¸Œé“¾è¡¨ä¸­æ‰€æœ‰é…ç½®ä¿¡æ¯
 
-@param table ÅäÖÃ¹şÏ£Á´±íµØÖ·
+@param table é…ç½®å“ˆå¸Œé“¾è¡¨åœ°å€
 */
 void advconf_hashtable_print(struct advconf_hashtable *table)
 {
@@ -433,11 +432,11 @@ void advconf_hashtable_print(struct advconf_hashtable *table)
 }
 
 /**
-¸ù¾İHost´Ó¹şÏ£±íÖĞ²éÕÒÅäÖÃ½Úµã²¢´òÓ¡ÆäĞÅÏ¢
+æ ¹æ®Hostä»å“ˆå¸Œè¡¨ä¸­æŸ¥æ‰¾é…ç½®èŠ‚ç‚¹å¹¶æ‰“å°å…¶ä¿¡æ¯
 
-@param table ¹şÏ£±íÊ×µØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
-@param host Òª´òÓ¡µÄHost×Ö·û´®
+@param table å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
+@param host è¦æ‰“å°çš„Hostå­—ç¬¦ä¸²
 */
 void advconf_hashnode_print_by_host(struct advconf_hashtable *table, int tablenum, char *host)
 {
@@ -470,10 +469,10 @@ void advconf_hashnode_print_by_host(struct advconf_hashtable *table, int tablenu
 }
 
 /**
-´òÓ¡ÅäÖÃ¹şÏ£±íÖĞËùÓĞÅäÖÃĞÅÏ¢
+æ‰“å°é…ç½®å“ˆå¸Œè¡¨ä¸­æ‰€æœ‰é…ç½®ä¿¡æ¯
 
-@param table ¹şÏ£±íÊ×µØÖ·
-@param tablenum ¹şÏ£±í´óĞ¡
+@param table å“ˆå¸Œè¡¨é¦–åœ°å€
+@param tablenum å“ˆå¸Œè¡¨å¤§å°
 */
 void advconf_hashtable_print_all(struct advconf_hashtable *table, int tablenum)
 {
