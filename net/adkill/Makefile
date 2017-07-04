@@ -5,8 +5,8 @@
 # See /LICENSE for more information.
 #
 
-include $(TOPDIR)/rules.mk
-include $(INCLUDE_DIR)/kernel.mk
+include $(TOPDIR)/rules.mk                   # 普通编译规则
+include $(INCLUDE_DIR)/kernel.mk             # 如果编译带有内核性质的模块，一定要附加上去
 
 PKG_NAME:=adkill
 
@@ -15,9 +15,9 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(KERNEL_BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
-include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/package.mk         # 包变量包含定义
 
-
+# 包描述
 define KernelPackage/adkill
   SUBMENU:=Netfilter Extensions
   TITLE:=Kill video site adv
@@ -26,6 +26,7 @@ define KernelPackage/adkill
   AUTOLOAD:=$(call AutoLoad,45,adv-kill)
 endef
 
+#包详细描述
 define KernelPackage/adkill/description
 Kill video site adv
 endef
@@ -38,17 +39,20 @@ MAKEOPTS:= -C $(LINUX_DIR) \
                 CROSS_COMPILE="$(TARGET_CROSS)" \
                 M="$(PKG_BUILD_DIR)" 
 
+#编译以前
 define Build/Prepare
 	$(call Build/Prepare/Default)
 	$(CP) -r src/. $(PKG_BUILD_DIR)
 endef
 
-
+#编译
 define Build/Compile
 	$(MAKE) $(MAKEOPTS)
 endef
 
+#内核包安装
 define KernelPackage/adkill/install
 endef
 
+#和普通包不一样 普通包 是  $(eval $(call KernelPackage, adkill))
 $(eval $(call KernelPackage,adkill))
