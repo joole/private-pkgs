@@ -10,8 +10,8 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
-	CATEGORY:=luci
-	SUBMENU:=Luci
+	SECTION:=luci
+	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
 	PKGARCH:=all
 	TITLE:=luci for shadowsocksR
