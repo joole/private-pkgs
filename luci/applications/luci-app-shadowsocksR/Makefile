@@ -10,8 +10,9 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
-	CATEGORY:=Network
+	CATEGORY:=luci
 	SUBMENU:=Luci
+	SUBMENU:=3. Applications
 	PKGARCH:=all
 	TITLE:=luci for shadowsocksR
 	DEPENDS:=+shadowsocksr-libev +dnsforwarder +ipset +ip +iptables-mod-tproxy +kmod-ipt-tproxy +iptables-mod-nat-extra
