@@ -17,7 +17,6 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
-  SUBMENU:=Web Servers/Proxies
   TITLE:=Tengine web server
   URL:=http://tengine.taobao.org/
   DEPENDS:=+libpcre +zlib +libpthread

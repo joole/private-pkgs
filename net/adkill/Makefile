@@ -20,6 +20,8 @@ include $(INCLUDE_DIR)/package.mk         # 包变量包含定义
 # 包描述
 define KernelPackage/adkill
   SUBMENU:=Netfilter Extensions
+  SECTION:=net
+  CATEGORY:=Network
   TITLE:=Kill video site adv
 #  DEPENDS:=+
   FILES:=$(PKG_BUILD_DIR)/adv-kill.ko
