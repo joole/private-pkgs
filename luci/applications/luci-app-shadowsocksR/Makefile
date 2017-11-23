@@ -15,7 +15,7 @@ define Package/$(PKG_NAME)
 	SUBMENU:=3. Applications
 	PKGARCH:=all
 	TITLE:=luci for shadowsocksR
-	DEPENDS:=+shadowsocksr-libev +dnsforwarder +ipset +ip +iptables-mod-tproxy +kmod-ipt-tproxy +iptables-mod-nat-extra
+	DEPENDS:=+shadowsocksr-libev +dns-forwarder +ipset +ip +iptables-mod-tproxy +kmod-ipt-tproxy +iptables-mod-nat-extra
 endef
 
 define Package/$(PKG_NAME)/description
