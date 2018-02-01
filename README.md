@@ -1,5 +1,5 @@
 # packages
-packages for OpenWRT or LEDE
+Extra packages for OpenWRT or LEDE
 
 ## 使用方法
 
