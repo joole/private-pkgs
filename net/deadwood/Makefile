@@ -38,7 +38,7 @@ define Package/deadwood
 endef
 
 define Package/deadwood/description
- Deadwood is a fully recursive caching DNS resolver.
+	Deadwood is a fully recursive caching DNS resolver.
 endef
 
 define Build/Configure
