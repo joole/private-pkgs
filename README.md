@@ -17,3 +17,10 @@ src-git joole https://github.com/joole/private-pkgs.git
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 ```
+
+## 目录结构介绍
+ + lang : 编程语言需要的额外包
+ + libs ：通用系统类库包（c/c++）
+ + luci : luci-app-主要存放这里
+ + net ： 网络相关模块存放
+ + util ：通用模块存放
