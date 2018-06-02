@@ -24,14 +24,14 @@ include $(INCLUDE_DIR)/package.mk											# 普通包定义宏
 include $(INCLUDE_DIR)/cmake.mk												# 使用cmake编译
 
 define Package/$(PKG_NAME)
-  SUBMENU:=Captive Portals
-  SECTION:=net
-  CATEGORY:=Network
-  DEPENDS:=+zlib +iptables-mod-extra +iptables-mod-ipopt +kmod-ipt-nat +iptables-mod-nat-extra \
+	SUBMENU:=Captive Portals
+	SECTION:=net
+	CATEGORY:=Network
+	DEPENDS:=+zlib +iptables-mod-extra +iptables-mod-ipopt +kmod-ipt-nat +iptables-mod-nat-extra \
            +libpthread +libopenssl +libjson-c +ipset +libip4tc +libevent2 +libevent2-openssl \
 		   +fping +libmosquitto +libuci
-  TITLE:=Apfree's wireless captive portal solution
-  URL:=http://www.kunteng.org
+	TITLE:=Apfree's wireless captive portal solution
+	URL:=http://www.kunteng.org
 endef
 
 define Package/$(PKG_NAME)/description
