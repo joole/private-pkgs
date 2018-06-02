@@ -1,27 +1,27 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=apfree_wifidog													# 包名
-PKG_VERSION:=2.03.1061														# 包版本
-PKG_RELEASE=1															    # Makefile版本
+PKG_NAME:=apfree_wifidog
+PKG_VERSION:=2.03.1061
+PKG_RELEASE=1
 
 
-PKG_LICENSE:=GPL-2.0													    # 包许可文件
-PKG_MAINTAINER:=Dengfeng Liu<liudengfeng@kunteng.org>						# 维持者
-PKG_LICENSE_FILES:=COPYING													# 许可协议文件
+PKG_LICENSE:=GPL-2.0
+PKG_MAINTAINER:=Dengfeng Liu<liudengfeng@kunteng.org>
+PKG_LICENSE_FILES:=COPYING
 
-PKG_SOURCE_PROTO:=git														# 使用下载协议
-PKG_SOURCE_URL:=https://github.com/liudf0716/apfree_wifidog.git				# 用于下载源码的地址
-PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)								# 下载目录，下载协议svn或git必须指定
-PKG_SOURCE_VERSION:=$(PKG_VERSION)											# 下载源码版本，下载协议git时必须指定
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz			# 原始代码文件名
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=https://github.com/liudf0716/apfree_wifidog.git
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_VERSION:=$(PKG_VERSION)
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_MIRROR_HASH:=40293b58d4be4ade84dc826a4a01c30a8ba97198c8040b0062fa8db0f8379987
 
-PKG_FIXUP:=autoreconf
-PKG_INSTALL:=1                                                              # 表示使用自己的make install
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)			# 编译包安装目录
+PKG_FIXUP:=autorecon
+PKG_INSTALL:=1
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)/$(PKG_NAME)-$(PKG_VERSION)
 
-include $(INCLUDE_DIR)/package.mk											# 普通包定义宏
-include $(INCLUDE_DIR)/cmake.mk												# 使用cmake编译
+include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/$(PKG_NAME)
 	SUBMENU:=Captive Portals
