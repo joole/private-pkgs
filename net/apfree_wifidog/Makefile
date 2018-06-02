@@ -35,11 +35,10 @@ define Package/$(PKG_NAME)
 endef
 
 define Package/$(PKG_NAME)/description
-	The ApFree Wifidog project is a complete and embeddable captive
-	portal solution for wireless community groups or individuals
-	who wish to open a free Hotspot while still preventing abuse
-	of their Internet connection.
-    It's enhanced wifidog
+	The ApFree Wifidog project is a complete and embeddable captive \
+	portal solution for wireless community groups or individuals \
+	who wish to open a free Hotspot while still preventing abuse \
+	of their Internet connection. It's enhanced wifidog
 endef
 
 define Package/$(PKG_NAME)/install
