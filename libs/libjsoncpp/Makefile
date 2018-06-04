@@ -7,7 +7,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=jsoncpp-src-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/jsoncpp
-PKG_SHA1SUM:=7169a50c7615070b6190076a7b5e86c45b7440b7
+#PKG_SHA1SUM:=7169a50c7615070b6190076a7b5e86c45b7440b7
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/jsoncpp-src-$(PKG_VERSION)
 
@@ -16,8 +16,8 @@ include $(INCLUDE_DIR)/cmake.mk
 
 
 define Package/libjsoncpp
-  SECTION:=agocontrol
-  CATEGORY:=AgoControl
+  SECTION:=libs
+  CATEGORY:=Libraries
   TITLE:=implementation of a JSON reader and writer in C++
   DEPENDS:=+libstdcpp
   URL:=http://jsoncpp.sf.net
