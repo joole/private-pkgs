@@ -14,7 +14,7 @@ define Package/luci-app-phddns
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
 	TITLE:=[BlackCrow]jmtoo License Key 
-	DEPENDS:=+luci +phddns +subversion
+	DEPENDS:=+luci +phddns +subversion-libs
 endef
 
 define Package/luci-app-phddns/description
