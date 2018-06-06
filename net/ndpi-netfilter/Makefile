@@ -56,7 +56,7 @@ endef
 
 define KernelPackage/ipt-ndpi
   SUBMENU:=Netfilter Extensions
-  TITLE:= nDPI net netfilter module
+  TITLE:=[BlackCrow] nDPI net netfilter module
   DEPENDS:=+kmod-nf-conntrack +kmod-nf-conntrack-netlink +kmod-ipt-compat-xtables
   FILES:= \
 	$(PKG_BUILD_DIR)/src/xt_ndpi.ko

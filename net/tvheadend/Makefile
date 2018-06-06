@@ -26,7 +26,7 @@ define Package/tvheadend
   SECTION:=multimedia
   CATEGORY:=Multimedia
   DEPENDS:=$(ICONV_DEPENDS) +libopenssl +librt +libffmpeg-full
-  TITLE:=Tvheadend is a TV streaming server for Linux
+  TITLE:=[BlackCrow]Tvheadend is a TV streaming server for Linux
   URL:=https://www.lonelycoder.com/hts/tvheadend_overview.html
 endef
 

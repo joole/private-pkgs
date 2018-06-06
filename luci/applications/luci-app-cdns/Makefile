@@ -6,7 +6,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI Support for CureDNS
+LUCI_TITLE:=[BlackCrow]LuCI Support for CureDNS
 LUCI_DEPENDS:=+cdns
 
 include ../../../../luci/luci.mk

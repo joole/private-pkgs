@@ -16,12 +16,12 @@ include $(INCLUDE_DIR)/package.mk
 define Package/samba-hotplug
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=Samba autoconfig hotplug script.
+  TITLE:=[BlackCrow]Samba autoconfig hotplug script.
   MAINTAINER:=GuoGuo
 endef
 
 define Package/samba-hotplug/description
-A hotplug script to config Samba share automatically.
+  A hotplug script to config Samba share automatically.
 endef
 
 define Build/Compile

@@ -29,7 +29,7 @@ define Package/vtun-sodium
   SECTION:=net
   CATEGORY:=Network
   DEPENDS:=+kmod-tun +VTUN_LZO:liblzo +VTUN_LZO:zlib +libsodium
-  TITLE:=VPN tunneling daemon
+  TITLE:=[BlackCrow]VPN tunneling daemon
   URL:=https://github.com/jedisct1/vtun
   SUBMENU:=VPN
   MENU:=1

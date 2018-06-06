@@ -13,7 +13,7 @@ define Package/luci-app-dnspod
    SECTION:=luci
    CATEGORY:=LuCI
    SUBMENU:=3. Applications
-   TITLE:=Auto DNS for dnspod
+   TITLE:=[BlackCrow]Auto DNS for dnspod
    PKGARCH:=all
    DEPENDS:= +curl +libcurl
 endef

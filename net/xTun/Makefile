@@ -21,7 +21,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/xTun/Default
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=A secure and fast VPN for protect your network traffic
+  TITLE:=[BlackCrow]A secure and fast VPN for protect your network traffic
   URL:=https://github.com/lparam/xTun
 endef
 

@@ -31,7 +31,7 @@ endef
 
 define Package/exfat
   $(call Package/exfat/template)
-  TITLE:=exFAT Driver
+  TITLE:=[BlackCrow]exFAT Driver
 endef
 
 define Package/exfat/description
@@ -40,7 +40,7 @@ endef
 
 define Package/exfat-utils
   $(call Package/exfat/template)
-  TITLE:=exFAT utilities
+  TITLE:=[BlackCrow]exFAT utilities
 endef
 
 define Package/exfat-utilities/description

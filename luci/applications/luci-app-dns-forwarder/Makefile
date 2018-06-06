@@ -5,7 +5,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI support for Dns-Forwarder
+LUCI_TITLE:=[BlackCrow]LuCI support for Dns-Forwarder
 LUCI_DEPENDS:=+dns-forwarder
 LUCI_PKGARCH:=all
 

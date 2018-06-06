@@ -26,11 +26,11 @@ endef
 
 define Package/libudns
   $(call Package/udns/Default)
-  TITLE:=udns library, stub DNS resolver -  shared libraries 
+  TITLE:=[BlackCrow]udns library, stub DNS resolver -  shared libraries 
 endef
 
 define Package/libudns/description
-The DNS library, udns, implements thread-safe stub DNS resolver functionality, which may be used both traditional, syncronous way and asyncronously, with application-supplied event loop.
+	The DNS library, udns, implements thread-safe stub DNS resolver functionality, which may be used both traditional, syncronous way and asyncronously, with application-supplied event loop.
 endef
 
 define Package/udns-utils

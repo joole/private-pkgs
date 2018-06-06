@@ -6,8 +6,9 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI Support for Xware3
+LUCI_TITLE:=[BlackCrow] LuCI Support for Xware3
 
-include ../../../../luci/luci.mk
+#include ../../../../luci/luci.mk
+include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

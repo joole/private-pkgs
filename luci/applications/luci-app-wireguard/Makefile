@@ -6,12 +6,13 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=WireGuard Status
+LUCI_TITLE:=[BlackCrow] WireGuard Status
 LUCI_DEPENDS:=+wireguard-tools +kmod-wireguard
 LUCI_PKGARCH:=all
 
 PKG_MAINTAINER:=Dan Luedtke <mail@danrl.com>
 
-include ../../../../luci/luci.mk
+#include ../../../../luci/luci.mk
+include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

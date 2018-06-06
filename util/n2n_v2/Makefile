@@ -25,7 +25,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/n2n_v2
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=N2N VPN tunneling daemon(V2)
+  TITLE:=[BlackCrow]N2N VPN tunneling daemon(V2)
   URL:=http://www.ntop.org/n2n/
   SUBMENU:=VPN
   DEPENDS:=+libpthread +kmod-tun +libopenssl

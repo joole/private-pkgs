@@ -6,7 +6,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=cpulimit configuration module
+LUCI_TITLE:=[BlackCrow]cpulimit configuration module
 LUCI_DEPENDS:=+cpulimit
 
 include ../../../../luci/luci.mk

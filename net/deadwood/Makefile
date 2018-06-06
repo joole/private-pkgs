@@ -27,7 +27,7 @@ define Package/deadwood/Default
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=IP Addresses and Names
-  TITLE:=A fully recursive caching DNS resolver
+  TITLE:=[BlackCrow] A fully recursive caching DNS resolver
   URL:=http://maradns.samiam.org/deadwood/
   MAINTAINER:=Sam Trenholme <maradns@gmail.com>
   DEPENDS:=+librt

@@ -6,7 +6,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI Support for Coova Chilli
+LUCI_TITLE:=[BlackCrow]LuCI Support for Coova Chilli
 LUCI_DEPENDS:=@BROKEN
 
 include ../../../../luci/luci.mk

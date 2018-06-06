@@ -22,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define KernelPackage/fs-exfat
 	SUBMENU:=Filesystems
-	TITLE:=EXFAT filesystem support
+	TITLE:=[BlackCrow]EXFAT filesystem support
 	DEPENDS:=+kmod-nls-base
 	FILES:= $(PKG_BUILD_DIR)/exfat.ko
 	AUTOLOAD:=$(call AutoLoad,30,exfat,1)

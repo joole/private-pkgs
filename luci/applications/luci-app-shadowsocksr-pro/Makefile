@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=luci-app-shadowsocksr
+PKG_NAME:=luci-app-shadowsocksr-pro
 PKG_VERSION:=1.7.2
 PKG_RELEASE:=1
 
@@ -19,16 +19,16 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/luci-app-shadowsocksr
+define Package/luci-app-shadowsocksr-pro
 	SECTION:=luci
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
-	TITLE:=LuCI Support for shadowsocksR-libev
+	TITLE:=[BlackCrow]LuCI Support for shadowsocksR-libev
 	PKGARCH:=all
 	DEPENDS:=+iptables +ipset
 endef
 
-define Package/luci-app-shadowsocksr/description
+define Package/luci-app-shadowsocksr-pro/description
 	LuCI Support for shadowsocksR-libev.
 endef
 
@@ -78,4 +78,4 @@ define Package/luci-app-shadowsocksr/install
 	$(INSTALL_BIN) ./files/root/usr/bin/ssr-rules $(1)/usr/bin/ssr-rules
 endef
 
-$(eval $(call BuildPackage,luci-app-shadowsocksr))
+$(eval $(call BuildPackage,luci-app-shadowsocksr-pro))

@@ -25,7 +25,7 @@ define Package/webui-aria2
   CATEGORY:=Network
   SUBMENU:=Download Manager
   DEPENDS:=+aria2
-  TITLE:=An interface to interact with aria2
+  TITLE:=[BlackCrow]An interface to interact with aria2
   URL:=https://github.com/ziahamza/webui-aria2
   PKGARCH:=all
 endef

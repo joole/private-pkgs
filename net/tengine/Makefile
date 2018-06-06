@@ -17,15 +17,15 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=Tengine web server
+  TITLE:=[BlackCrow]Tengine web server
   URL:=http://tengine.taobao.org/
   DEPENDS:=+libpcre +zlib +libpthread
   MENU:=1
 endef
 
 define Package/$(PKG_NAME)/description
- tengine is an HTTP and reverse proxy server, as well as a mail proxy server,
- written by Igor Sysoev.
+	tengine is an HTTP and reverse proxy server, as well as a mail proxy server,
+	written by Igor Sysoev.
 endef
 
 define Package/$(PKG_NAME)/config

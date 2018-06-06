@@ -20,7 +20,7 @@ define Package/k3screenctrl
   SECTION:=utils
   CATEGORY:=Utilities
   DEPENDS:=@TARGET_bcm53xx_DEVICE_phicomm-k3
-  TITLE:=LCD screen controller on PHICOMM K3
+  TITLE:=[BlackCrow]LCD screen controller on PHICOMM K3
   URL:=https://github.com/updateing/k3screenctrl
 endef
 

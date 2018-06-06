@@ -10,16 +10,16 @@ PO2LMO:=$(shell find $(TOPDIR)/build_dir/target-*/luci* -name po2lmo | awk '{if(
 include $(INCLUDE_DIR)/package.mk
 
 define Package/luci-app-phddns
-  SECTION:=luci
-  CATEGORY:=LuCI
-  SUBMENU:=3. Applications
-  TITLE:=jmtoo License Key 
-  DEPENDS:=+luci +phddns +subversion
+	SECTION:=luci
+	CATEGORY:=LuCI
+	SUBMENU:=3. Applications
+	TITLE:=[BlackCrow]jmtoo License Key 
+	DEPENDS:=+luci +phddns +subversion
 endef
 
 define Package/luci-app-phddns/description
-  License Key Save Application.
-  Developer by bywayboy<bywayboy@qq.com>
+	License Key Save Application.
+	Developer by bywayboy<bywayboy@qq.com>
 endef
 
 define Build/Prepare
@@ -35,11 +35,11 @@ define Build/Compile
 endef
 
 define Package/luci-app-phddns/postinst
-#!/bin/sh
-[ -n "${IPKG_INSTROOT}" ] || {
-	rm -f /tmp/luci-indexcache
-	exit 0
-}
+	#!/bin/sh
+	[ -n "${IPKG_INSTROOT}" ] || {
+		rm -f /tmp/luci-indexcache
+		exit 0
+	}
 endef
 
 define Package/luci-app-phddns/install

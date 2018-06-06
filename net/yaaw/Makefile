@@ -25,7 +25,7 @@ define Package/yaaw
   CATEGORY:=Network
   SUBMENU:=Download Manager
   DEPENDS:=+aria2
-  TITLE:=Yet another aria2 web frontend
+  TITLE:=[BlackCrow]Yet another aria2 web frontend
   URL:=https://github.com/binux/yaaw
   PKGARCH:=all
 endef

@@ -6,9 +6,10 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=WebShell module
+LUCI_TITLE:=[BlackCrow] WebShell module
 LUCI_DEPENDS:=
 
-include ../../../../luci/luci.mk
+#include ../../../../luci/luci.mk
+include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

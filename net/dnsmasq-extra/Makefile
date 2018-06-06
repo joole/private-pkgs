@@ -15,7 +15,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/dnsmasq-extra
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=Dnsmasq-Extra
+	TITLE:=[BlackCrow] Dnsmasq-Extra
 	DEPENDS:=+dnsmasq-full +ipset +curl
 	PKGARCH:=all
 endef

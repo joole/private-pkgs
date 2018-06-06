@@ -15,7 +15,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/cpulimit
   CATEGORY:=Utilities
-  TITLE:=cpulimit
+  TITLE:=[BlackCrow] cpulimit
   URL:=https://github.com/opsengine/cpulimit.git
 endef
 

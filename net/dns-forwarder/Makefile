@@ -31,7 +31,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/dns-forwarder
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=Forwarding DNS queries on TCP transport
+	TITLE:=[BlackCrow]Forwarding DNS queries on TCP transport
 	URL:=https://github.com/aa65535/hev-dns-forwarder
 endef
 

@@ -22,7 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/vlmcsd
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=vlmcsd for OpenWRT
+	TITLE:=[BlackCrow]vlmcsd for OpenWRT
 	URL:=http://forums.mydigitallife.info/threads/50234
 	DEPENDS:=+libpthread
 endef

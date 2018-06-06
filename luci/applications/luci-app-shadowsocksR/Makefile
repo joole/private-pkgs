@@ -14,7 +14,7 @@ define Package/$(PKG_NAME)
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
 	PKGARCH:=all
-	TITLE:=luci for shadowsocksR
+	TITLE:=[BlackCrow]luci for shadowsocksR
 	DEPENDS:=+shadowsocksr-libev +dns-forwarder +ipset +ip +iptables-mod-tproxy +kmod-ipt-tproxy +iptables-mod-nat-extra
 endef
 
@@ -36,9 +36,9 @@ define Build/Configure
 endef
 
 define Package/dnsforwarder/conffiles
-/etc/init.d/ipset.sh
-/etc/ipset/china
-/etc/ipset/local
+	/etc/init.d/ipset.sh
+	/etc/ipset/china
+	/etc/ipset/local
 endef
 
 define Build/Compile

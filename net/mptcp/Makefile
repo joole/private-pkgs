@@ -19,7 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/mptcp
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=Multipath TCP configuration scrips
+  TITLE:=[BlackCrow]Multipath TCP configuration scrips
   DEPENDS:=+ip +iptables
   PKGARCH:=all
 endef

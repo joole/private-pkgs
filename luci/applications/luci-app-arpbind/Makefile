@@ -6,7 +6,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=ARP Binding
+LUCI_TITLE:=[BlackCrow]ARP Binding
 LUCI_DEPENDS:=+ip-full
 
 include ../../../../luci/luci.mk

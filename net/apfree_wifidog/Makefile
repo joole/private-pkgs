@@ -30,7 +30,7 @@ define Package/$(PKG_NAME)
 	DEPENDS:=+zlib +iptables-mod-extra +iptables-mod-ipopt +kmod-ipt-nat +iptables-mod-nat-extra \
            +libpthread +libopenssl +libjson-c +ipset +libip4tc +libevent2 +libevent2-openssl \
 		   +fping +libmosquitto +libuci
-	TITLE:=Apfree's wireless captive portal solution
+	TITLE:=[BlackCrow] Apfree's wireless captive portal solution
 	URL:=http://www.kunteng.org
 endef
 

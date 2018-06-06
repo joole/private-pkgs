@@ -32,7 +32,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/ChinaDNS
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=Protect yourself against DNS poisoning in China.
+	TITLE:=[BlackCrow] Protect yourself against DNS poisoning in China.
 	URL:=https://github.com/shadowsocks/ChinaDNS
 	DEPENDS:=+curl +cdns +dns-forwarder
 endef

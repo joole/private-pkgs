@@ -10,10 +10,12 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
-	CATEGORY:=Luci
+	SECTION:=luci
+	CATEGORY:=LuCI
+	SUBMENU:=3. Applications
 #	SUBMENU:=Luci
 	PKGARCH:=all
-	TITLE:=luci for bandwidthd
+	TITLE:=[BlackCrow]luci for bandwidthd
 	DEPENDS:=+bandwidthd
 endef
 

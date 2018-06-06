@@ -29,7 +29,7 @@ define Package/transmission-svn/template
   SUBMENU:=BitTorrent
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=A free, lightweight BitTorrent client
+  TITLE:=[BlackCrow]A free, lightweight BitTorrent client
   URL:=https://trac.transmissionbt.com/timeline
   MAINTAINER:=Cezary Jackiewicz <cezary@eko.one.pl>
 endef

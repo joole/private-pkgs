@@ -31,7 +31,7 @@ define Package/luci-app-xkcptun
 	SECTION:=luci
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
-	TITLE:=LuCI support for xkcptun
+	TITLE:=[BlackCrow] LuCI support for xkcptun
 	URL:=https://github.com/liudf0716/xkcptun
 	MAINTAINER:=Lars Gierth <larsg@systemli.org>
 	PKGARCH:=all

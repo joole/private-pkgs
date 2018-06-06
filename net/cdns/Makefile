@@ -29,7 +29,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/cdns
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=CureDNS is an experimental tool to cure your poisoned DNS.
+	TITLE:=[BlackCrow] CureDNS is an experimental tool to cure your poisoned DNS.
 	URL:=https://github.com/semigodking/cdns
 	DEPENDS:=+libevent2
 endef

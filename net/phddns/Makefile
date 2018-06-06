@@ -18,7 +18,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/phddns
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=Oray PHDDNS client for OpenWRT
+  TITLE:=[BlackCrow]Oray PHDDNS client for OpenWRT
   URL:=http://www.oray.com/
 endef
 
@@ -45,10 +45,8 @@ endef
 
 #[删除后执行的脚本 记得加上#!/bin/sh 没有就空着] 
 define Package/$(PKG_NAME)/postrm
-#!/bin/sh
-rm -rf /usr/sbin/phddns /etc/init.d/phddns /etc/rc.d/S92phddns
-
-
+	#!/bin/sh
+	rm -rf /usr/sbin/phddns /etc/init.d/phddns /etc/rc.d/S92phddns
 endef
 
 $(eval $(call BuildPackage,phddns))

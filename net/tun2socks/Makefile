@@ -24,7 +24,7 @@ define Package/tun2socks/Default
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=VPN
-  TITLE:=tun2socks
+  TITLE:=[BlackCrow] tun2socks
   DEPENDS:=+kmod-tun +ip +librt
 endef
 

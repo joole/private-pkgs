@@ -33,7 +33,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/shadowsocks-libev/Default
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=Lightweight Secured Socks5 Proxy
+	TITLE:=[BlackCrow]Lightweight Secured Socks5 Proxy
 	URL:=https://github.com/shadowsocks/shadowsocks-libev
 	DEPENDS:=+libev +libudns +libpcre +libpthread +libsodium +libmbedtls
 endef

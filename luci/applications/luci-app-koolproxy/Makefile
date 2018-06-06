@@ -22,7 +22,7 @@ define Package/luci-app-koolproxy
 	SECTION:=luci
 	CATEGORY:=LuCI
 	SUBMENU:=3. Applications
-	TITLE:=LuCI Support for KoolProxy
+	TITLE:=[Blackcrow]LuCI Support for KoolProxy
 	PKGARCH:=all
 	DEPENDS:=+curl +ipset
 endef

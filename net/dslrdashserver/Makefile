@@ -13,16 +13,16 @@ PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
 include $(INCLUDE_DIR)/package.mk
 
 define Package/ddserver
-  SECTION:=utils
-  CATEGORY:=Multimedia
-  DEPENDS:=+libusb-1.0 +uclibcxx
-  TITLE:=Server for DSLR camera to use with DslrDashboard
-  MAINTAINER:=Zoltan Hubai <hubaiz@gmail.com>
+	SECTION:=utils
+	CATEGORY:=Multimedia
+	DEPENDS:=+libusb-1.0 +uclibcxx
+	TITLE:=[BlackCrow] Server for DSLR camera to use with DslrDashboard
+	MAINTAINER:=Zoltan Hubai <hubaiz@gmail.com>
 endef
 
 define Package/ddserver/description
- Server for DslrDashboard for controling connected DSLR
- camera with USB
+	Server for DslrDashboard for controling connected DSLR
+	camera with USB
 endef
 
 define Build/Prepare

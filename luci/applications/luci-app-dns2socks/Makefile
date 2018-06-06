@@ -6,7 +6,7 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=LuCI Support for dns2socks
+LUCI_TITLE:=[BlackCrow]LuCI Support for dns2socks
 LUCI_DEPENDS:=+dns2socks
 
 include ../../../../luci/luci.mk

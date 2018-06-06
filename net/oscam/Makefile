@@ -35,7 +35,7 @@ define Package/oscam
   SECTION:=stream
   CATEGORY:=Multimedia
   DEPENDS:=+libopenssl +libpthread +libusb-1.0
-  TITLE:=Open Source Conditional Access Module software
+  TITLE:=[BlackCrow]Open Source Conditional Access Module software
   URL:=http://streamboard.gmc.to/oscam/
   SUBMENU:=
 endef

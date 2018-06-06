@@ -23,14 +23,13 @@ define Package/mentohust
 	SECTION:=net
 	CATEGORY:=Network
 	DEPENDS:=+libpcap
-	TITLE:=An CERNET client daemon
+	TITLE:=[BlackCrow] An CERNET client daemon
 	URL:=http://code.google.com/p/mentohust/
 	SUBMENU:=CERNET
 endef
 
 define Package/mentohust/description
-An CERNET client daemon,
-Most usually used in China collages.
+	An CERNET client daemon, Most usually used in China collages.
 endef
 
 define Build/Prepare

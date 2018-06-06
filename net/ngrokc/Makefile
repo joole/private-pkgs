@@ -31,7 +31,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=ngrok client
+	TITLE:=[BlackCrow]ngrok client
 	DEPENDS:=+libopenssl +libstdcpp
 	URL:=https://github.com/dosgo/ngrok-c
 	MAINTAINER:=ibrother <i@ibrother.me>

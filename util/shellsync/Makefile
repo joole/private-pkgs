@@ -8,7 +8,7 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/shellsync
   CATEGORY:=Utilities
-  TITLE:=shellsync
+  TITLE:=[BlackCrow]shellsync
   DEPENDS:=+libpthread
 endef
 

@@ -3,9 +3,11 @@
 
 include $(TOPDIR)/rules.mk
 
-LUCI_TITLE:=Network Shares - NFS module
+LUCI_TITLE:=[BlackCrow] Network Shares - NFS module
 LUCI_DEPENDS:=nfs-kernel-server
 
-include ../../luci.mk
+#include ../../luci.mk
+
+include $(TOPDIR)/feeds/luci/luci.mk
 
 # call BuildPackage - OpenWrt buildroot signature

@@ -24,7 +24,7 @@ define Package/dns2socks/Default
   SECTION:=net
   CATEGORY:=Network
   SUBMENU:=IP Addresses and Names
-  TITLE:=The utility to resolve DNS requests via a SOCKS5 tunnel.
+  TITLE:=[BlackCrow] The utility to resolve DNS requests via a SOCKS5 tunnel.
   URL:=http://dns2socks.sourceforge.net/
   MAINTAINER:=ghostmaker
   DEPENDS:=+libpthread

@@ -21,7 +21,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/xSocks/Default
   SECTION:=net
   CATEGORY:=Network
-  TITLE:=A secure and fast proxy for protect your network traffic
+  TITLE:=[BlackCrow]A secure and fast proxy for protect your network traffic
   URL:=https://github.com/lparam/xSocks
 endef
 

@@ -25,7 +25,7 @@ include $(INCLUDE_DIR)/cmake.mk
 define Package/$(PKG_NAME)/Default
 	SECTION:=net
 	CATEGORY:=Network
-	TITLE:=A Secure Tunnel Based On KCP with N:M Multiplexing
+	TITLE:=[BlackCrow]A Secure Tunnel Based On KCP with N:M Multiplexing
 	URL:=https://github.com/liudf0716/xkcptun
 	DEPENDS:=+libjson-c +libevent2
 endef

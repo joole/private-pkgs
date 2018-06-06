@@ -13,7 +13,7 @@ define Package/$(PKG_NAME)
 	SECTION:=luci
 	CATEGORY:=Network
 	SUBMENU:=Luci
-	TITLE:=luci for redsocks2 on OpenWrt
+	TITLE:=[BlackCrow]luci for redsocks2 on OpenWrt
 	PKGARCH:=all
 	DEPENDS:=+redsocks2 +kmod-ipt-ipopt +iptables-mod-ipopt +ipset +ip +iptables-mod-tproxy +kmod-ipt-tproxy +iptables-mod-nat-extra
 endef
@@ -23,8 +23,8 @@ define Package/$(PKG_NAME)/description
 endef
 
 define Package/$(PKG_NAME)/postinst
-#!/bin/sh
-rm -rf /tmp/luci*
+	#!/bin/sh
+	rm -rf /tmp/luci*
 endef
 
 define Build/Prepare
@@ -38,7 +38,6 @@ endef
 
 define Package/$(PKG_NAME)/install
     $(CP) ./files/* $(1)/
-
 endef
 
 $(eval $(call BuildPackage,$(PKG_NAME)))

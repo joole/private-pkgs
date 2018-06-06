@@ -29,7 +29,7 @@ define Package/pdnsd
 	CATEGORY:=Network
 	SUBMENU:=Web Servers/Proxies
 	DEPENDS:=+libpthread
-	TITLE:=Proxy DNS Server
+	TITLE:=[BlackCrow]Proxy DNS Server
 endef
 
 define Package/pdnsd/config
