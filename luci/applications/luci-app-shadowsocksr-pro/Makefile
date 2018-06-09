@@ -43,7 +43,7 @@ endef
 define Build/Compile
 endef
 
-define Package/luci-app-shadowsocksr/postinst
+define Package/luci-app-shadowsocksr-pro/postinst
 #!/bin/sh
 if [ -z "$${IPKG_INSTROOT}" ]; then
 	if [ -f /etc/uci-defaults/luci-shadowsocksr ]; then
@@ -55,11 +55,11 @@ fi
 exit 0
 endef
 
-define Package/luci-app-shadowsocksr/conffiles
+define Package/luci-app-shadowsocksr-pro/conffiles
 /etc/config/shadowsocksr
 endef
 
-define Package/luci-app-shadowsocksr/install
+define Package/luci-app-shadowsocksr-pro/install
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
 	$(INSTALL_DATA) $(PKG_BUILD_DIR)/shadowsocksr.*.lmo $(1)/usr/lib/lua/luci/i18n/
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/controller
